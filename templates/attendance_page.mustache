@@ -1,0 +1,135 @@
+{{!
+Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
+    Copyright (C) 2016-17 Test Valley School.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or 
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+}}
+<ul class="nav nav-tabs">
+	<li>
+		<a href="{{ link_documents_page }}">
+			{{# str }}documentsfeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+	<li>
+		<a href="{{ link_achievement_page }}">
+			{{# str }}achievementfeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+	<li>
+		<a href="{{ link_behaviour_page }}">
+			{{# str }}behaviourfeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+	<li class="active">
+		<a href="{{ link_attendance_page }}">
+			{{# str }}attendancefeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+</ul>
+
+<p style="text-align:center;"><span class="fa-2x fa-check" style="font-size:2.7em;"></span></p>
+<p>{{ featurehelp }}</p>
+
+
+{{# attendance_marks_by_pupil }}
+	<h3>{{ user.firstname }} {{ user.lastname }}</h3>
+
+	<h5>{{# str }}attendancesummarysynopsis, report_parentprogressview, {{ academic_year }}{{/ str }}</h5>
+
+	{{# attendance_summary_none }}
+	<div class="alert">
+		<p>{{ attendance_summary_none }}</p>
+	</div>
+	{{/ attendance_summary_none }}
+
+	<div class="statistics">
+
+	<aside class="statistic{{ pcnt_present_class }}">
+		<p>{{# str }}pcntpresent, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ pcnt_present }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}pcntauthorisedabsences, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ pcnt_authorised_absences }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}pcntunauthorisedabsences, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ pcnt_unauthorised_absences }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}pcntunexplainedabsences, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ pcnt_unexplained_absences }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}pcntlatebeforereg, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ pcnt_late_before_reg }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}pcntlateafterreg, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ pcnt_late_after_reg }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}present, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ present }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}authorisedabsences, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ authorised_absences }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}unauthorisedabsences, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ unauthorised_absences }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}unexplainedabsences, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ unexplained_absences }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}latebeforereg, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ late_before_reg }}</h4>
+	</aside>
+
+	<aside class="statistic">
+		<p>{{# str }}lateafterreg, report_parentprogressview{{/ str }}</p>
+		<h4 class="counter">{{ late_after_reg }}</h4>
+	</aside>
+
+	</div>
+
+	<h5>{{# str }} attendancemarkstableheading, report_parentprogressview {{/ str }}</h5>
+
+	{{{ table }}}
+
+{{/ attendance_marks_by_pupil }}
+
+{{^ attendance_marks_by_pupil }}
+	<div class="alert alert-info">
+	<p>{{# str }}noattachedpupils, report_parentprogressview{{/ str }}</p>
+	</div>
+{{/ attendance_marks_by_pupil }}
+
+
+<aside class="show-documents-published-form">{{{ daterange_form }}}</aside>
+<br/>
+<br/>

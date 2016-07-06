@@ -1,0 +1,164 @@
+/*
+Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
+    Copyright (C) 2016-17 Test Valley School.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License,
+    or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+.path-admin-report-parentprogressview article.available-document {
+	border: 1px solid #e3e3e3;
+	border-radius: 1px 1px 1px 1px;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+	display: inline-block;
+	min-height: 80px;
+	margin: 20px;
+	padding: 10px;
+	border-collapse: collapse;
+  	background-image: linear-gradient(to bottom, #fffee6, #fffbd4);
+	background-color: #f8f1ff;
+}
+
+.path-admin-report-parentprogressview #region-main {
+	background-color: #fff;
+	border: 1px solid #e3e3e3;
+	border-radius: 1px 1px 1px 1px;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+	width: 100%;
+}
+
+.path-admin-report-parentprogressview div[role="main"] {
+	padding: 20px;
+}
+
+.path-admin-report-parentprogressview h2, .path-admin-report-parentprogressview h3 {
+}
+
+.path-admin-report-parentprogressview h3 {
+	border-bottom: 1px solid #e3e3e3;
+}
+
+
+.path-admin-report-parentprogressview article.available-document .thumbnail img {
+	max-width: 100%;
+	border: 1px solid #e3e3e3;
+}
+
+.path-admin-report-parentprogressview article.available-document .document-download {
+	font-size: 3em;
+	padding: 15px;
+}
+
+@media all and (min-width: 490px) {
+	.path-admin-report-parentprogressview article.available-document .thumbnail img {
+		max-width: 400px;
+	}
+}
+
+.path-admin-report-parentprogressview article.available-document .thumbnail {
+	text-align: center;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.path-admin-report-parentprogressview aside.show-documents-published-form {
+	float: right;
+	padding: 5px 20px;
+	border: 1px solid #e3e3e3;
+	border-radius: 1px 1px 1px 1px;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+	background-color: #f3f3f3;
+}
+
+.path-admin-report-parentprogressview aside.show-documents-published-form fieldset {
+
+}
+
+.path-admin-report-parentprogressview .document-meta {
+	color: rgb(96, 96, 96);
+}
+
+.path-admin-report-parentprogressview .center {
+	text-align: center;
+}
+
+.path-admin-report-parentprogressview .filename {
+	font-size: 80%;
+
+}
+
+.path-admin-report-parentprogressview .meta-item {
+	font-weight: normal;
+}
+
+.path-admin-report-parentprogressview .adminwarning {
+	margin: auto;
+	padding: 8px 35px 8px 14px;
+	margin-bottom: 20px;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	background-color: #fcf8e3;
+	border: 1px solid #fbeed5;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	color: #8a6d3b;
+	width: 60%;
+	min-width: 220px;
+}
+
+.path-admin-report-parentprogressview div.statistics {
+	display: table;
+	table-layout: fixed;
+}
+
+.path-admin-report-parentprogressview aside.statistic {
+	float: left;
+	display: table-cell;
+	overflow: hidden;
+	width: 200px;
+	padding: 20px;
+}
+
+.path-admin-report-parentprogressview aside.statistic > p {
+	text-align: center;
+	height: 50px;
+}
+
+.path-admin-report-parentprogressview aside.statistic > h4 {
+	font-size: 250%; 
+	text-align: center;
+}
+
+.path-admin-report-parentprogressview .no-risk {
+	background-color: #60ea8e;
+}
+
+.path-admin-report-parentprogressview .risk-of-underachievement {
+	background-color: #f7fc9c;
+}
+
+.path-admin-report-parentprogressview .serious-risk-of-underachievement {
+	background-color: #fcd388;
+}
+
+.path-admin-report-parentprogressview .extreme-risk {
+	background-color: #fcb09f;
+}
+
+.path-admin-report-parentprogressview .severe-risk-of-extreme-risk {
+	background-color: #fcc09f;
+}
+
+
+

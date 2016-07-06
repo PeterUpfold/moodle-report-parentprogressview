@@ -1,0 +1,61 @@
+{{!
+Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
+    Copyright (C) 2016-17 Test Valley School.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or 
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+}}
+<ul class="nav nav-tabs">
+	<li>
+		<a href="{{ link_documents_page }}">
+			{{# str }}documentsfeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+	<li>
+		<a href="{{ link_achievement_page }}">
+			{{# str }}achievementfeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+	<li class="active">
+		<a href="{{ link_behaviour_page }}">
+			{{# str }}behaviourfeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+	<li>
+		<a href="{{ link_attendance_page }}">
+			{{# str }}attendancefeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+</ul>
+
+<p style="text-align:center;"><span class="fa-2x fa-clipboard" style="font-size:2.7em;"></span></p>
+<p>{{ featurehelp }}</p>
+
+
+{{# behaviour_by_pupil }}
+	<h3>{{ user.firstname }} {{ user.lastname }}</h3>
+
+	{{{ table }}}
+
+{{/ behaviour_by_pupil }}
+
+{{^ behaviour_by_pupil }}
+	<div class="alert alert-info">
+	<p>{{# str }}noattachedpupils, report_parentprogressview{{/ str }}</p>
+	</div>
+{{/ behaviour_by_pupil }}
+
+
+<aside class="show-documents-published-form">{{{ daterange_form }}}</aside>
+<br/>
+<br/>

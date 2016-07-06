@@ -18,25 +18,44 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 */
 
 
-
-
 /**
- * Set up capabilities for this report plugin.
+ * The report_parentprogressview page which dumps the thumbnail of the specified document, if the user is duly authorized.
  *
  * @package report_parentprogressview
  * @author Test Valley School
  */
 
-defined('MOODLE_INTERNAL') || die();
 
 
-$capabilities = array(
-	'report/parentprogressview:view' => array(
-		'riskbitmask'            => RISK_PERSONAL,
-		'captype'                => 'read',
-		'contextlevel'           => CONTEXT_MODULE,
-		'archetypes'             => array(
-			'editingteacher'   => CAP_ALLOW,
-		),
-	)
-);
+require(dirname(__FILE__).'/../../config.php');
+require_once($CFG->libdir.'/adminlib.php');
+
+require_login();
+require_capability('report/parentprogressview:view', context_system::instance());
+
+$id = required_param( 'id', PARAM_INT );
+
+// get the document
+try {
+	$document_set = new report_parentprogressview\local\document_set( $USER );
+
+	$document = $document_set->get_document_by_id( $id ); // only gets documents that this $USER has rights to
+
+	if ( $document != null ) {
+
+		header('Content-Type: image/jpeg');
+		$output = fopen('php://output', 'w');
+		
+		fwrite($output, $document->get_thumbnail_bytes());
+
+	}
+	else {
+		throw new Exception( get_string('nopermission', 'report_parentprogressview' ) );	
+	}
+
+}
+catch (Exception $e) {
+	print_error($e->getMessage());
+}
+
+

@@ -19,7 +19,7 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 
 
 /**
- * The report_parentprogressview report viewed event.
+ * The report_parentprogressview behaviour viewed event.
  *
  * @package report_parentprogressview
  * @author Test Valley School
@@ -30,12 +30,35 @@ namespace report_parentprogressview\event;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * The report_parentprogressview report viewed class. Note that in this context, report refers to accessing the page at all, not an individual document.
+ * The report_parentprogressview behaviour viewed class. This allows the logging of when a user visits the behaviours page
+ * and browses through the date range.
  *
  * @package report_parentprogressview
  */
 
-class report_viewed extends \core\event\base {
+class behaviour_viewed extends \core\event\base {
+
+	/**
+	 * Object representing the user who triggered the event.
+	 */
+	protected $user;
+
+	/**
+	 * The username of the user to which this behaviour pertains.
+	 */
+	protected $pupil_username;
+
+	/**
+	 * The selected date range start when this behaviours page was viewed.
+	 */
+	protected $date_range_start;
+
+	/**
+	 * The selected date range end when this behaviours page was viewed.
+	 */
+	protected $date_range_end;
+	//TODO get and store this information -- it is not yet implemented that we know the date ranges viewed
+
 
 	/**
 	 * Initialize some basic event data
@@ -43,9 +66,12 @@ class report_viewed extends \core\event\base {
 	 * @return void
 	 */
 	protected function init() {
+		global $DB;
+
 		$this->data['crud'] = 'r';
 		$this->data['edulevel'] = self::LEVEL_OTHER;
 		$this->context = \context_system::instance();
+
 	}
 
 	/**
@@ -55,7 +81,7 @@ class report_viewed extends \core\event\base {
 	 */
 
 	public static function get_name() {
-		return get_string('eventreportviewed', 'report_parentprogressview');
+		return get_string('eventbehaviourviewed', 'report_parentprogressview');
 	}
 
 	/**
@@ -65,18 +91,16 @@ class report_viewed extends \core\event\base {
 	 */
 
 	 public function get_description() {
-		return sprintf(get_string('eventreportvieweddescription', 'report_parentprogressview'), $this->userid);
+		return sprintf(get_string('eventbehaviourvieweddescription', 'report_parentprogressview'),
+			$this->userid,
+			$this->get_data()['other']['pupil_username']
+			);
 	 }
-
-	 /**
-	  * Returns the URL to the report module.
-	  *
-	  * @return \moodle_url
-	  */
 
 	 public function get_url() {
-		return new \moodle_url('/report/parentprogressview/index.php');
+		return $this->get_data()['other']['link_as_moodle_url'];
 	 }
+
 
 	 public static function get_other_mapping() {
 		return false;

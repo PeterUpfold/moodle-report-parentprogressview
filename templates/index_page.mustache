@@ -1,0 +1,86 @@
+{{!
+Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
+    Copyright (C) 2016-17 Test Valley School.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or 
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+}}
+<ul class="nav nav-tabs">
+	<li class="active">
+		<a href="{{ link_documents_page }}">
+			{{# str }}documentsfeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+	<li>
+		<a href="{{ link_achievement_page }}">
+			{{# str }}achievementfeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+	<li>
+		<a href="{{ link_behaviour_page }}">
+			{{# str }}behaviourfeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+	<li>
+		<a href="{{ link_attendance_page }}">
+			{{# str }}attendancefeaturename, report_parentprogressview{{/ str }}
+		</a>
+	</li>
+</ul>
+
+<aside class="show-documents-published-form"> 
+{{{ daterange_form }}}
+</aside>
+
+{{# documents_by_pupil }}
+	<h3>{{ user.firstname }} {{ user.lastname }}</h3>
+
+	{{# documents }}
+		<a href="{{ link }}">
+		<article class="available-document filetype-{{ file_extension }}">
+			<div class="document-meta">
+				<p class="center">
+					<span class="meta-item">{{# str }}documentmeta:datepublished, report_parentprogressview{{/ str }}</span> {{ date_published_userdate }}
+				</p>
+			</div>
+
+			<div class="thumbnail">
+				<img src="{{ thumbnail_link }}" alt="{{ filename }}" />
+				<div class="fa fa-2x fa-download document-download"></div>
+			</div>
+
+			<div class="document-meta">
+				<p class="center filename"><!--<span class="meta-item">{{# str }}documentmeta:filename, report_parentprogressview{{/ str }}:</span> -->{{filename}}</p>
+				
+			</div>
+		</article>
+	</a>
+
+	{{/ documents }}
+	{{^ documents }}
+		<div class="alert alert-info">
+		<p>{{# str }}nodocumentstoview, report_parentprogressview{{/ str }}</p>
+		<p>{{# str }}nodocumentshelp1, report_parentprogressview, {{ link_no_documents_help_page }} {{/ str }}</p>
+		<p>{{# str }}nodocumentshelp2, report_parentprogressview{{/ str }}</p>
+		</div>
+	{{/ documents }}
+
+{{/ documents_by_pupil }}
+
+{{^ documents_by_pupil }}
+	<div class="alert alert-info">
+	<p>{{# str }}noattachedpupils, report_parentprogressview{{/ str }}</p>
+	</div>
+{{/ documents_by_pupil }}
+
+

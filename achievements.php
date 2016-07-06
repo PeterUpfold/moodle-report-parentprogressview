@@ -1,5 +1,4 @@
 <?php
-
 /*
 Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
     Copyright (C) 2016-17 Test Valley School.
@@ -17,27 +16,23 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 /**
- * The report_parentprogressview report main  page.
+ * The report_parentprogressview page for showing achievements.
  *
  * @package report_parentprogressview
  * @author Test Valley School
  */
 
-
-
 require(dirname(__FILE__).'/../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
-require_once( dirname( __FILE__ ) . '/classes/output/index_page.php' ); // autoloader doesn't seem to want to play ball
+require_once( dirname( __FILE__ ) . '/classes/output/achievements_page.php'); // autoloader much?
 
-admin_externalpage_setup('report_parentprogressview_main', '', null, '', array());
-// admin_externalpage_setup does access validation checks for us
+admin_externalpage_setup('report_parentprogressview_achievements', '', null, '', array()); // this does access checks
 
 // Mustache template rendering -- see templates/index_page.mustache and classes/output/*
 $title = get_string('pluginname', 'report_parentprogressview');
 $pagetitle = $title;
-$url = new moodle_url('/report/parentprogressview/index.php');
+$url = new moodle_url('/report/parentprogressview/achievements.php');
 $PAGE->set_url($url);
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
@@ -47,11 +42,8 @@ $output = $PAGE->get_renderer('report_parentprogressview');
 echo $output->header();
 echo $output->heading($pagetitle);
 
-// log -- note that 'report_viewed' event actually just means this page, not the viewing of a particular document
-\report_parentprogressview\event\report_viewed::create()->trigger();
-
-// get data to pass to the renderable
-$document_set = new report_parentprogressview\local\document_set($USER);
+// log this event
+\report_parentprogressview\event\achievement_viewed::create()->trigger();
 
 // get earliest and latest dates if form has been submitted
 $form = new \report_parentprogressview\local\daterange_form(null, null, 'post');
@@ -61,7 +53,7 @@ if ($data = $form->get_data()) {
 }
 
 if (!isset($earliest_date) || $earliest_date == 0) {
-	$earliest_date = null; // null it out so that $document_set uses its default
+	$earliest_date = null; // null it out so that  default is used
 }
 
 if (isset($latest_date) && is_numeric($latest_date) && $latest_date > 0) {
@@ -74,10 +66,9 @@ else {
 	$latest_date = null;
 }
 
-$document_set->prepare_date_range($earliest_date, $latest_date);
-
 // create renderable
-$renderable = new report_parentprogressview\output\index_page($document_set);
+$renderable = new report_parentprogressview\output\achievements_page($USER, $earliest_date, $latest_date);
+
 
 // do the rendering business
 echo $output->render($renderable);
