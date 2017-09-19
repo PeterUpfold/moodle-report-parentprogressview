@@ -269,7 +269,7 @@ class attendance_page implements renderable, templatable {
 						$pcnt_present = floatval($result[0]->pcnt_present);
 						$output[$o_count]->pcnt_present_class = '';
 
-						// ensur leading space in the CSS class below
+						// ensure leading space in the CSS class below
 						if ($pcnt_present >= 98) {
 							$output[$o_count]->pcnt_present_class = ' no-risk'; //#60ea8e';
 						}
