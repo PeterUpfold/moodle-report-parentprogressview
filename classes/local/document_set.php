@@ -233,7 +233,7 @@ class document_set {
 		$this->prepare_date_range($earliest_published_date, $latest_published_date);
 
 		// no efficient way to do this with IN and prepared statements :(
-		$sql = "SELECT id, filename, pupil_username, LENGTH(data) AS length, date_added, date_published, hidden, mimetype, hash FROM {$this->conn->db_table}
+		$sql = "SELECT id, filename, LOWER(pupil_username), LENGTH(data) AS length, date_added, date_published, hidden, mimetype, hash FROM {$this->conn->db_table}
 			WHERE
 				pupil_username = ? AND
 				date_published > ? AND
