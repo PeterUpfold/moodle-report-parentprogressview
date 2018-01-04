@@ -119,7 +119,7 @@ class common_utilities {
 		// now, we have a $pupils array, and can search The Hub's available documents with those usernames
 		$pupil_usernames = array();
 		foreach($pupils as $pupil) {
-			$pupil_usernames[] = $pupil->username;
+			$pupil_usernames[] = strtolower($pupil->username);
 		}
 
 
