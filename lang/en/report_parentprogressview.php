@@ -192,3 +192,12 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 
  $string['config_no_documents_help_page'] = 'No Documents to View Help Page';
  $string['config_no_documents_help_page_desc'] = 'A link to a page with explanation/help which is displayed when no documents are available to view.';
+
+ $string['achievementpointslabel'] = 'Achievement Points';
+ $string['behaviourpointslabel'] = 'Behaviour Points';
+
+ $string['config_achievement_totals_api_route'] = 'Achievement Totals API Route';
+ $string['config_achievement_totals_api_user_desc'] = 'The API route for achievement totals. Usually <em>achievement_totals</em>. This uses the same username and password and other API information from the Achievement API details.';
+
+ $string['achievementotalsheader'] = 'Current Achievement and Behaviour Points Totals';
+ $string['achievementitemsheader'] = 'Achievement Point Details';

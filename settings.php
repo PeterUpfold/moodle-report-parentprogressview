@@ -192,6 +192,15 @@ $settings->add(new admin_setting_configpasswordunmask(
 	''
 ));
 
+$settings->add(new admin_setting_configtext(
+	'report_parentprogressview_achievement_totals_api_route',
+	get_string('config_achievement_totals_api_route', 'report_parentprogressview'),
+	get_string('config_achievement_totals_api_user_desc', 'report_parentprogressview'),
+	'',
+	PARAM_NOTAGS,
+	null
+));
+
 
 /*** Behaviour API settings ***/
 $settings->add(new admin_setting_heading(

@@ -46,6 +46,20 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 {{# achievements_by_pupil }}
 	<h3>{{ user.firstname }} {{ user.lastname }}</h3>
 
+	<h5>{{# str }}achievementotalsheader, report_parentprogressview {{/ str }}</h5>
+	<div class="statistics">
+		<aside class="statistic">
+			<p>{{# str }}achievementpointslabel, report_parentprogressview{{/ str }}</p>
+			<h4 class="counter">{{ total_achievement_points }}</h4>
+		</aside>
+		<aside class="statistic">
+			<p>{{# str }}behaviourpointslabel, report_parentprogressview{{/ str }}</p>
+			<h4 class="counter">{{ total_behaviour_points }}</h4>
+		</aside>
+
+	</div>
+
+	<h5>{{# str }}achievementitemsheader, report_parentprogressview{{/ str }}</h5>
 	{{{ table }}}
 
 {{/ achievements_by_pupil }}

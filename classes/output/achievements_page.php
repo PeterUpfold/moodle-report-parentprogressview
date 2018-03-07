@@ -86,6 +86,9 @@ class achievements_page implements renderable, templatable {
 		if (empty($CFG->report_parentprogressview_achievements_api_route)) {
 			\debugging('No route is set for API access to the achievements API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
 		}
+		if (empty($CFG->report_parentprogressview_achievement_totals_api_route)) {
+			\debugging('No route is set for API access to the achievement totals API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
 
 		$this->configuration->username       = $CFG->report_parentprogressview_achievements_api_user;
 		$this->configuration->password       = $CFG->report_parentprogressview_achievements_api_pass;
@@ -93,6 +96,8 @@ class achievements_page implements renderable, templatable {
 		$this->configuration->base           = $CFG->report_parentprogressview_achievements_api_base;
 		$this->configuration->namespace      = $CFG->report_parentprogressview_achievements_api_namespace;
 		$this->configuration->route          = $CFG->report_parentprogressview_achievements_api_route;
+
+		$this->configuration->totals_route   = $CFG->report_parentprogressview_achievement_totals_api_route;
 
 		$this->attached_usernames = \report_parentprogressview\local\common_utilities::get_attached_usernames($user);
 
@@ -164,6 +169,31 @@ class achievements_page implements renderable, templatable {
 
 				$table->finish_output();
 				$output[$o_count]->table = ob_get_clean();
+
+				// get achievement points totals
+				$conduct_totals_request = new  \report_parentprogressview\local\WP_REST_API_Request(
+					$this->configuration->base,
+					$this->configuration->namespace,
+					$this->configuration->totals_route,
+					$this->configuration->username,
+					$this->configuration->password);
+				$conduct_totals_request->add_query_argument('status', 'private');
+				$conduct_totals_request->add_query_argument('orderby', 'date');
+				$conduct_totals_request->add_query_argument('order', 'desc');
+				$conduct_totals_request->add_meta_query('username', $username, '=');
+				//$conduct_totals_request->add_query_argument('after', date('c', strtotime($this->earliest_date)));
+				//$conduct_totals_request->add_query_argument('before', date('c', strtotime($this->latest_date)));
+				$conduct_totals = $conduct_totals_request->request();
+
+				if ($conduct_totals_request->status == 200 && is_array($conduct_totals) && count($conduct_totals) > 0) {
+					$output[$o_count]->total_achievement_points = intval( $conduct_totals[0]->total_achievement_points );
+					$output[$o_count]->total_behaviour_points = intval( $conduct_totals[0]->total_behaviour_points );
+				}
+				else {
+					$output[$o_count]->total_achievement_points = '??'; 
+					$output[$o_count]->total_behaviour_points = '??'; 
+				}
+
 				++$o_count;
 
 			}
