@@ -103,8 +103,11 @@ class common_utilities {
 				if ($role->roleid == common_utilities::get_parent_roleid()) {
 					// get the pupil user ID from this role context
 					$context = \context::instance_by_id($role->contextid);
-					$pupil_user_ids[] = (int)$context->get_url()->param('id');
 
+					// is this context a user context?
+					if ($context->contextlevel == CONTEXT_USER) {
+						$pupil_user_ids[] = (int)$context->get_url()->param('id');
+					}
 				}
 			}
 
