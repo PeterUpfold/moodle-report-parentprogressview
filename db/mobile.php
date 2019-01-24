@@ -30,7 +30,7 @@ $addons = array(
 		'handlers' => array(
 			'documents' => array(
 				'displaydata' => array(
-					'icon'  => $CFG->wwwroot . '/report/parentprogressview/pix/icon.gif',
+					'icon'  => 'paper',
 					'class' => '',
 				),
 				'delegate'    => 'CoreMainMenuDelegate', // add to main app menu
