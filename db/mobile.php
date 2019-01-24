@@ -17,19 +17,33 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 /**
- * Module version.nformation for Parent Progress View. (Viewing extracted documents and statistics from MIS)
+ * Define mobile app support for this plugin.
  *
  * @package report_parentprogressview
  * @author Test Valley School
  */
- 
-defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2019012400;			// YYYYMMDDXX where XX is an incrementing revision number for that day
-$plugin->requires  = 2016052300;			// required Moodle version.tring
-$plugin->component = 'report_parentprogressview';	// Full name of the plugin
-$plugin->maturity  = MATURITY_STABLE;			// why not?
-$plugin->release   = 'v1.2';				// friendly version.umber
-$plugin->cron      = 0;
+
+$addons = array(
+	'report_parentprogressview' => array(
+		'handlers' => array(
+			'documents' => array(
+				'displaydata' => array(
+					'icon'  => $CFG->wwwroot . '/report/parentprogressview/pix/icon.gif',
+					'class' => '',
+				),
+				'delegate'    => 'CoreMainMenuDelegate', // add to main app menu
+				'method'      => 'mobile_documents_view',
+				'offlinefunctions' => array(
+					'mobile_documents_view' => array(),
+
+				)
+			)
+		),
+		'lang' => array(
+			array('pluginname', 'report_parentprogressview'),
+		)
+	)
+
+);
