@@ -1,9 +1,19 @@
 {{=<% %>=}}
 <div>
+	<p class="item-heading">{{ 'plugin.report_parentprogressview.pluginname' | translate }}</p>
 	<ion-list>
+		<%# documents_by_pupil %>
 		<ion-list-header>
-			<p class="item-heading">{{ 'plugin.report_parentprogressview.pluginname' | translate }}</p>
+			<p class="item-heading"><% user.firstname %> <% user.lastname %></p>
 		</ion-list-header>
+		<%# documents %>
+		<ion-item>
+			<a href="<% link %>">
+				<% user.firstname %>
+			</a>
+		</ion-item>
+		<%/ documents %>
+		<%/ documents_by_pupil %>
 
 	</ion-list>
 </div>

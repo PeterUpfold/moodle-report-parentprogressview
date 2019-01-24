@@ -17,19 +17,33 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 /**
- * Module version.nformation for Parent Progress View. (Viewing extracted documents and statistics from MIS)
+ * Define traditional Moodle Web Services exposed by the plugin. The functions that 
+ * implement these are in external.php
  *
  * @package report_parentprogressview
  * @author Test Valley School
  */
- 
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2019012410;			// YYYYMMDDXX where XX is an incrementing revision number for that day
-$plugin->requires  = 2016052300;			// required Moodle version.tring
-$plugin->component = 'report_parentprogressview';	// Full name of the plugin
-$plugin->maturity  = MATURITY_STABLE;			// why not?
-$plugin->release   = 'v1.2';				// friendly version.umber
-$plugin->cron      = 0;
+$functions = array(
+	'report_parentprogressview_get_document' => array(
+		'classname'     => 'report_parentprogressview\external',
+		'methodname'    => 'get_document',
+		'classpath'     => '',
+		'description'   => 'Get a Document and return its bytes',
+		'type'          => 'read',
+		'capabilities'  => 'report/parentprogressview:view',
+		'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE, 'local_mobile')
+	),
+/*	'report_parentprogressview_get_thumbnail' => array(
+		'classname'     => 'report_parentprogressview\external',
+		'methodname'    => 'get_thumbnail',
+		'classpath'     => '',
+		'description'   => 'Get a Document Thumbnail',
+		'type'          => 'read',
+		'ajax'          => true,
+		'services'      => array(MOODLE_OFFICIAL_MOBILE_SERVICE)
+	),*/
+);
