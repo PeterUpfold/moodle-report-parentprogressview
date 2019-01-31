@@ -45,7 +45,7 @@ class external extends \external_api {
 	public static function get_document_parameters() {
 		return new \external_function_parameters(
 			array(
-				'id' => new \external_value(PARAM_INT, 'The document ID to view')
+				'id' => new \external_value(PARAM_INT, 'The document ID to view', VALUE_REQUIRED)
 			)
 		);
 	}
@@ -71,16 +71,20 @@ class external extends \external_api {
 	public static function get_document($id) {
 		global $USER;
 
+		if ((int)$USER->id < 1) {
+			throw new \Exception(get_string('apinotloggedin', 'report_parentprogressview'));
+		}
+
 		$params = self::validate_parameters(self::get_document_parameters(), array('id' => $id));
 		
-		$document_set = new \report_parentprogressview\local\document_set($USER->id);
+		$document_set = new \report_parentprogressview\local\document_set($USER);
 		$document = $document_set->get_document_by_id($id);
 
 		if (NULL == $document) {
-			throw new Exception( get_string('nopermission', 'report_parentprogressview' ) );	
+			throw new \Exception(get_string('nopermission', 'report_parentprogressview' ));	
 		}
 
-		return array( 'document' => $document->get_bytes() );
+		return array( 'document' => base64_encode( $document->get_bytes() ) );
 	}
 
 };

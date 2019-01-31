@@ -77,7 +77,7 @@ else {
 $document_set->prepare_date_range($earliest_date, $latest_date);
 
 // create renderable
-$renderable = new report_parentprogressview\output\index_page($document_set);
+$renderable = new \report_parentprogressview\output\index_page($document_set);
 
 // do the rendering business
 echo $output->render($renderable);

@@ -201,3 +201,5 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 
  $string['achievementotalsheader'] = 'Current Achievement and Behaviour Points Totals';
  $string['achievementitemsheader'] = 'Achievement Point Details';
+
+ $string['apinotloggedin'] = 'Not able to validate that you are logged in.';
