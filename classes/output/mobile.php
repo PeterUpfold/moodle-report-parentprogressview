@@ -33,6 +33,15 @@ use report_parentprogressview_external;
  */
 class mobile {
 
+
+	/**
+	 * Set up JavaScript handlers.
+	 */
+	public static function mobile_init() {
+		return mobile::mobile_documents_view_javascript();	
+	}
+
+
 	/**
 	 * Returns the documents view for the mobile app.
 	 * @param array $args Arguments from tool_mobile_get_content web service
@@ -74,11 +83,25 @@ class mobile {
 					'html' => $OUTPUT->render_from_template('report_parentprogressview/mobile_view_page', $data),
 				),
 			),
-			'javascript' => '',
+			'javascript' => mobile::mobile_documents_view_javascript(),
 			'otherdata'  => '',
 			'files'      => ''
 		);
 
+	}
+
+	/**
+	 * Return the JavaScript for the mobile_documents_view external view.
+	 *
+	 * @return string
+	 */
+	public static function mobile_documents_view_javascript() {
+		$file = 'documents_view.js';
+		$filename = dirname(__FILE__) . '/../../javascript/' . $file;
+		if (!file_exists($filename)) {
+			throw new \Exception(sprintf('Unable to open JavaScript file \'%s\'.', $file));
+		}
+		return file_get_contents($filename);
 	}
 
 };

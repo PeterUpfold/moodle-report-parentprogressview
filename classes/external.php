@@ -84,7 +84,7 @@ class external extends \external_api {
 			throw new \Exception(get_string('nopermission', 'report_parentprogressview' ));	
 		}
 
-		return array( 'document' => base64_encode( $document->get_bytes() ) );
+		return array('document' => base64_encode($document->get_bytes());
 	}
 
 };

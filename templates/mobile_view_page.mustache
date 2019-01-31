@@ -7,10 +7,8 @@
 			<p class="item-heading"><% user.firstname %> <% user.lastname %></p>
 		</ion-list-header>
 		<%# documents %>
-		<ion-item>
-			<a href="<% link %>">
-				<% user.firstname %>
-			</a>
+		<ion-item tappable class="report_parentprogressview_document_item" data-documentid="<% id %>" (click)="documentItemClick()">
+				TODO Report for <% user.firstname %>
 		</ion-item>
 		<%/ documents %>
 		<%/ documents_by_pupil %>
