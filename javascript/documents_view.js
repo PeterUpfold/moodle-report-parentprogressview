@@ -41,3 +41,19 @@ this.documentItemClick = function(id) {
 	console.log(uri);
 	this.CoreFileHelperProvider.downloadAndOpenFile(uri, 'report_parentprogressview', id);
 }
+
+this.triggerDocumentsView = function() {
+
+}
+
+this.triggerAchievementView = function() {
+//	debugger;
+}
+
+this.triggerBehaviourView = function() {
+//	debugger;
+}
+
+this.triggerAttendanceView = function() {
+//	debugger;
+}

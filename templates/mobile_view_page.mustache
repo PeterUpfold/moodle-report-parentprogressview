@@ -5,25 +5,45 @@
 		<ion-list-header>
 			<p class="item-heading"><% user.firstname %> <% user.lastname %></p>
 		</ion-list-header>
-		<ion-slides pager="true">
-			<ion-slide>
-				<ion-item>
-			<ion-label color="primary">
-				Reports
-			</ion-label>
-		</ion-item>
-		<%# documents %>
-		<ion-item detail tappable class="report_parentprogressview_document_item" data-documentid="<% id %>" (click)="documentItemClick(<% id %>)">
-			<ion-label>
-				Report <% id %> for <% user.firstname %>
-			</ion-label>
-		</ion-item>
-		<%/ documents %>
+		<ion-segment [(ngModel)]="ppv-datatype">
+			<ion-segment-button value="documents" (click)="triggerDocumentsView()">
+				{{ 'plugin.report_parentprogressview.documentsfeaturename' | translate }}
+			</ion-segment-button>
+			<ion-segment-button value="achievement" (click)="triggerAchievementView()">
+				{{ 'plugin.report_parentprogressview.achievementfeaturename' | translate }}
+			</ion-segment-button>
+			<ion-segment-button value="behaviour" (click)="triggerBehaviourView()">
+				{{ 'plugin.report_parentprogressview.behaviourfeaturename' | translate }}
+			</ion-segment-button>
+			<ion-segment-button value="attendance" (click)="triggerAttendanceView()">
+				{{ 'plugin.report_parentprogressview.attendancefeaturename' | translate }}
+			</ion-segment-button>
+		</ion-segment>
+		<div [ngSwitch]="ppv-datatype">
+			<ion-list *ngSwitchCase="'documents'">
+				<%# documents %>
+				<ion-item detail tappable class="report_parentprogressview_document_item" data-documentid="<% id %>" (click)="documentItemClick(<% id %>)">
+					<ion-label>
+						Report <% id %> for <% user.firstname %>
+					</ion-label>
+				</ion-item>
+				<%/ documents %>
+			</ion-list>
+			<ion-list *ngSwitchCase="'achievement'">
+				Achievement
+			</ion-list>
+			<ion-list *ngSwitchCase="'behaviour'">
+				Behaviour
+			</ion-list>
+			<ion-list *ngSwitchCase="'attendance'">
+				Attendance
+			</ion-list>
+		</div>
 
-			</ion-slide>
-		</ion-slides>
 			<ion-item-divider></ion-item-divider>
 		<%/ documents_by_pupil %>
 
 	</ion-list>
+
+
 </div>
