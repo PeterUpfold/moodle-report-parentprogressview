@@ -5,12 +5,24 @@
 		<ion-list-header>
 			<p class="item-heading"><% user.firstname %> <% user.lastname %></p>
 		</ion-list-header>
+		<ion-slides pager="true">
+			<ion-slide>
+				<ion-item>
+			<ion-label color="primary">
+				Reports
+			</ion-label>
+		</ion-item>
 		<%# documents %>
 		<ion-item detail tappable class="report_parentprogressview_document_item" data-documentid="<% id %>" (click)="documentItemClick(<% id %>)">
+			<ion-label>
 				Report <% id %> for <% user.firstname %>
+			</ion-label>
 		</ion-item>
 		<%/ documents %>
-		<ion-item-divider></ion-item-divider>
+
+			</ion-slide>
+		</ion-slides>
+			<ion-item-divider></ion-item-divider>
 		<%/ documents_by_pupil %>
 
 	</ion-list>
