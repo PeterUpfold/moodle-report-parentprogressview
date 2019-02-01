@@ -1,20 +1,16 @@
 {{=<% %>=}}
 <div>
-	<p class="item-heading">{{ 'plugin.report_parentprogressview.pluginname' | translate }}</p>
 	<ion-list>
 		<%# documents_by_pupil %>
 		<ion-list-header>
 			<p class="item-heading"><% user.firstname %> <% user.lastname %></p>
 		</ion-list-header>
 		<%# documents %>
-		<ion-item tappable class="report_parentprogressview_document_item" data-documentid="<% id %>" (click)="documentItemClick(<% id %>)">
-				TODO Report for <% user.firstname %>
-
+		<ion-item detail tappable class="report_parentprogressview_document_item" data-documentid="<% id %>" (click)="documentItemClick(<% id %>)">
+				Report <% id %> for <% user.firstname %>
 		</ion-item>
-				<!--<button ion-button icon-only clear [core-download-file]="{fileurl: '<% link %>', timemodified: '<% id %>'}">
-					<ion-icon name="download"></ion-icon>
-				</button>-->
 		<%/ documents %>
+		<ion-item-divider></ion-item-divider>
 		<%/ documents_by_pupil %>
 
 	</ion-list>

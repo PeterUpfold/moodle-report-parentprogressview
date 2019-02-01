@@ -1,3 +1,5 @@
+
+
 var that = this;
 
 this.base64ToBlob = function(base64Data, contentType) {
@@ -23,7 +25,8 @@ this.base64ToBlob = function(base64Data, contentType) {
 
 this.documentItemClick = function(id) {
 
-	var token = this.CoreSitesProvider.currentSite.getToken();
+	let token = this.CoreSitesProvider.currentSite.getToken();
+	let siteUrl = this.CoreSitesProvider.getCurrentSite().siteUrl;
 
 	let wsPreSets = {
             wsToken: token,
@@ -33,14 +36,8 @@ this.documentItemClick = function(id) {
             responseExpected: true
 	};
 
-	this.CoreWSProvider.call('report_parentprogressview_get_document', { 'id' : id }, wsPreSets).then(function(result) {
-		//TODO pull mimetype
-		debugger;
-		
-		console.log('Will open a document with type ' + result.mimetype);
+	let uri = siteUrl + '/report/parentprogressview/mobile/document.php?id=' + encodeURIComponent(id) + '&token=' + encodeURIComponent(token);
 
-		console.log('data:' + result.mimetype +';base64,' + result.document);
-
-		that.CoreUtilsProvider.openInApp('data:' + result.mimetype +';base64,' + result.document);
-	});
+	console.log(uri);
+	this.CoreFileHelperProvider.downloadAndOpenFile(uri, 'report_parentprogressview', id);
 }

@@ -59,7 +59,8 @@ class external extends \external_api {
 		return new \external_single_structure(
 			array(
 				'document' => new \external_value(PARAM_RAW, 'byte array of the document'),
-				'mimetype' => new \external_value(PARAM_TEXT, 'mimetype of the document')
+				'mimetype' => new \external_value(PARAM_TEXT, 'mimetype of the document'),
+				'id'       => new \external_value(PARAM_INT, 'document\'s unique internal identifier'),
 			)
 		);
 	}
@@ -85,7 +86,7 @@ class external extends \external_api {
 			throw new \Exception(get_string('nopermission', 'report_parentprogressview' ));	
 		}
 
-		return array('document' => base64_encode($document->get_bytes()), 'mimetype' => $document->mimetype);
+		return array('document' => base64_encode($document->get_bytes()), 'mimetype' => $document->mimetype, 'id' => $document->id);
 	}
 
 };
