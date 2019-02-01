@@ -65,7 +65,7 @@ class mobile {
 		$data = new \stdClass();
 
 		// split documents by pupil
-		$data->documents_by_pupil = $document_set->get_documents_by_pupil_username($document_set->earliest_published_date, $document_set->latest_published_date);	
+		$data->documents_by_pupil = $document_set->get_documents_and_other_data_by_pupil_username($document_set->earliest_published_date, $document_set->latest_published_date);	
 
 		$data->link_documents_page = new \moodle_url('/report/parentprogressview/index.php');
 		$data->link_behaviour_page = new \moodle_url('/report/parentprogressview/behaviour.php');

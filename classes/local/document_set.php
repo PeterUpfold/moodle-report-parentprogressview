@@ -309,6 +309,27 @@ class document_set {
 	}
 
 	/**
+	 * Return an associative array of documents and all other data by pupil username. Convenience function
+	 * to allow the mobile app data, which is presented as a single multi-tabbed view to be pulled at once.
+	 */
+	public function get_documents_and_other_data_by_pupil_username($earliest_published_date = null, $latest_published_date = null, $include_hidden = false) {
+		global $DB;
+
+		$output = $this->get_documents_by_pupil_username($earliest_published_date, $latest_published_date, $include_hidden);
+
+		// add other data
+		//
+		foreach($output as $pupil) {
+
+		}
+
+
+
+		return $output;
+	}
+
+
+	/**
 	 * Retrieve a document object from its ID, if the current user is duly authorized to see it.
 	 */
 	public function get_document_by_id($id) {

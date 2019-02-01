@@ -32,7 +32,7 @@ $addons = array(
 				'displaydata' => array(
 					'icon'  => 'paper',
 					'class' => '',
-					'title' => 'Demo Title Parent Progress View', /* TODO can't get this to work without prefixing the title get_string('pluginname', 'report_parentprogress'),*/
+					//'title' => 'Demo Title Parent Progress View', /* TODO can't get this to work without prefixing the title get_string('pluginname', 'report_parentprogress'),*/
 				),
 				'delegate'    => 'CoreMainMenuDelegate', // add to main app menu
 				'method'      => 'mobile_documents_view',
