@@ -2,25 +2,26 @@
 <div>
 	<ion-list>
 		<%# documents_by_pupil %>
+		<div class="pupil" data-pupil="<% user.id %>">
 		<ion-list-header>
 			<p class="item-heading"><% user.firstname %> <% user.lastname %></p>
 		</ion-list-header>
-		<ion-segment [(ngModel)]="ppv-datatype">
-			<ion-segment-button value="documents" (click)="triggerDocumentsView()">
+		<ion-segment>
+			<ion-segment-button class="segment-button segment-activated" value="documents" (click)="triggerDocumentsView(<% user.id %>)">
 				{{ 'plugin.report_parentprogressview.documentsfeaturename' | translate }}
 			</ion-segment-button>
-			<ion-segment-button value="achievement" (click)="triggerAchievementView()">
+			<ion-segment-button value="achievement" (click)="triggerAchievementView(<% user.id %>)">
 				{{ 'plugin.report_parentprogressview.achievementfeaturename' | translate }}
 			</ion-segment-button>
-			<ion-segment-button value="behaviour" (click)="triggerBehaviourView()">
+			<ion-segment-button value="behaviour" (click)="triggerBehaviourView(<% user.id %>)">
 				{{ 'plugin.report_parentprogressview.behaviourfeaturename' | translate }}
 			</ion-segment-button>
-			<ion-segment-button value="attendance" (click)="triggerAttendanceView()">
+			<ion-segment-button value="attendance" (click)="triggerAttendanceView(<% user.id %>)">
 				{{ 'plugin.report_parentprogressview.attendancefeaturename' | translate }}
 			</ion-segment-button>
 		</ion-segment>
-		<div [ngSwitch]="ppv-datatype">
-			<ion-list *ngSwitchCase="'documents'">
+		<div>
+			<ion-list class="documents-list" data-pupil="<% user.id %>">
 				<%# documents %>
 				<ion-item detail tappable class="report_parentprogressview_document_item" data-documentid="<% id %>" (click)="documentItemClick(<% id %>)">
 					<ion-label>
@@ -29,20 +30,20 @@
 				</ion-item>
 				<%/ documents %>
 			</ion-list>
-			<ion-list *ngSwitchCase="'achievement'">
+			<ion-list class="achievement" data-pupil="<% user.id %>" style="display:none;">
 				Achievement
 			</ion-list>
-			<ion-list *ngSwitchCase="'behaviour'">
+			<ion-list class="behaviour" data-pupil="<% user.id %>" style="display:none;">
 				Behaviour
 			</ion-list>
-			<ion-list *ngSwitchCase="'attendance'">
+			<ion-list class="attendance" data-pupil="<% user.id %>" style="display:none;">
 				Attendance
 			</ion-list>
 		</div>
 
 			<ion-item-divider></ion-item-divider>
+		</div>
 		<%/ documents_by_pupil %>
-
 	</ion-list>
 
 

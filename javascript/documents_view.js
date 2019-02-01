@@ -42,18 +42,31 @@ this.documentItemClick = function(id) {
 	this.CoreFileHelperProvider.downloadAndOpenFile(uri, 'report_parentprogressview', id);
 }
 
-this.triggerDocumentsView = function() {
+this.triggerDocumentsView = function(userid) {
+	this.hideAllViews(userid);
+	document.querySelector('ion-list.documents-list[data-pupil="' + userid + '"]').style.display = 'block';
+}
+
+this.triggerAchievementView = function(userid) {
+	this.hideAllViews(userid);
+	document.querySelector('ion-list.achievement[data-pupil="' + userid + '"]').style.display = 'block';
 
 }
 
-this.triggerAchievementView = function() {
-//	debugger;
+this.triggerBehaviourView = function(userid) {
+	this.hideAllViews(userid);
+	document.querySelector('ion-list.behaviour[data-pupil="' + userid + '"]').style.display = 'block';
 }
 
-this.triggerBehaviourView = function() {
-//	debugger;
+this.triggerAttendanceView = function(userid) {
+	this.hideAllViews(userid);
+	document.querySelector('ion-list.attendance[data-pupil="' + userid + '"]').style.display = 'block';//
 }
 
-this.triggerAttendanceView = function() {
-//	debugger;
+this.hideAllViews = function(userid) {
+	//debugger;
+	document.querySelector('ion-list.achievement[data-pupil="' + userid + '"]').style.display = 'none';
+	document.querySelector('ion-list.documents-list[data-pupil="' + userid + '"]').style.display = 'none';
+	document.querySelector('ion-list.behaviour[data-pupil="' + userid + '"]').style.display = 'none';
+	document.querySelector('ion-list.attendance[data-pupil="' + userid + '"]').style.display = 'none';
 }
