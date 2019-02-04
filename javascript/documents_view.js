@@ -36,10 +36,29 @@ this.documentItemClick = function(id) {
             responseExpected: true
 	};
 
-	let uri = siteUrl + '/report/parentprogressview/mobile/document.php?id=' + encodeURIComponent(id) + '&token=' + encodeURIComponent(token);
+	//let uri = siteUrl + '/report/parentprogressview/mobile/document.php?id=' + encodeURIComponent(id) + '&token=' + encodeURIComponent(token);
+	let uri = siteUrl + '/report/parentprogressview/mobile/document/' + encodeURIComponent(id) + '/' + encodeURIComponent(token) + '/document.pdf';
 
 	console.log(uri);
-	this.CoreFileHelperProvider.downloadAndOpenFile(uri, 'report_parentprogressview', id);
+	/*this.CoreFileHelperProvider.downloadAndOpenFile(uri, 'report_parentprogressview', id).then(function(value) {
+		alert('Promise fulfilled ' + JSON.stringify(value) );
+	}, function(value) {
+		alert('Promise failed ' + JSON.stringify(value));
+	});*/
+	
+	/*
+	this.CoreUtilsProvider.openInApp(uri).then(function(value) {
+		//alert('Promise fulfilled ' + JSON.stringify(value) );
+	}, function(value) {
+		//alert('Promise failed ' + JSON.stringify(value));
+	});
+	*/
+
+	this.CoreUtilsProvider.openOnlineFile(uri);
+
+	//debugger;
+	//this.CoreFileHelperProvider.utils.openFile(uri));
+	//window.open(uri);
 }
 
 this.triggerDocumentsView = function(userid) {

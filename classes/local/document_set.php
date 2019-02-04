@@ -73,6 +73,17 @@ class document_set {
 	 */
 	protected $api_configuration;
 
+	/**
+	 * An array of \stdClass() holding configurations for accessing The Hub's REST API,
+	 * keyed by the API endpoint type.
+	 */
+	protected $api_configurations_by_endpoint;
+
+	/**
+	 * All usernames attached to the user who is requesting documents.
+	 */
+	protected $attached_usernames;
+
 
 	/**
 	 *
@@ -315,17 +326,146 @@ class document_set {
 	public function get_documents_and_other_data_by_pupil_username($earliest_published_date = null, $latest_published_date = null, $include_hidden = false) {
 		global $DB;
 
+		$this->init_rest_api_config();
+
+		$attendance_by_pupil =
+
 		$output = $this->get_documents_by_pupil_username($earliest_published_date, $latest_published_date, $include_hidden);
 
 		// add other data
 		//
 		foreach($output as $pupil) {
-
+			$output->attendance
 		}
 
 
-
 		return $output;
+	}
+
+	/**
+	 * Prepare the configuration for using the REST API.
+	 */
+	protected function init_rest_api_config() {
+		global $CFG, $USER;
+
+		$this->api_configurations_by_endpoint = array();
+
+		$this->attached_usernames = \report_parentprogressview\local\common_utilities::get_attached_usernames($USER);
+
+		if (empty($CFG->report_parentprogressview_achievements_api_user)) {
+			\debugging('No username is set for API access to the achievements API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_achievements_api_pass)) {
+			\debugging('No password is set for API access to the achievements API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_achievements_api_base)) {
+			\debugging('No base URI is set for API access to the achievements API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_achievements_api_namespace)) {
+			\debugging('No namespace is set for API access to the achievements API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_achievements_api_route)) {
+			\debugging('No route is set for API access to the achievements API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_achievement_totals_api_route)) {
+			\debugging('No route is set for API access to the achievement totals API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+
+		$this->api_configurations_by_endpoint['achievements'] = new \stdClass();
+		$this->api_configurations_by_endpoint['achievements']
+
+		$this->api_configurations_by_endpoint['achievements']->username       = $CFG->report_parentprogressview_achievements_api_user;
+		$this->api_configurations_by_endpoint['achievements']->password       = $CFG->report_parentprogressview_achievements_api_pass;
+
+		$this->api_configurations_by_endpoint['achievements']->base           = $CFG->report_parentprogressview_achievements_api_base;
+		$this->api_configurations_by_endpoint['achievements']->namespace      = $CFG->report_parentprogressview_achievements_api_namespace;
+		$this->api_configurations_by_endpoint['achievements']->route          = $CFG->report_parentprogressview_achievements_api_route;
+
+		$this->api_configurations_by_endpoint['achievements']->totals_route   = $CFG->report_parentprogressview_achievement_totals_api_route;
+
+		if (empty($CFG->report_parentprogressview_attendance_marks_api_user)) {
+			\debugging('No username is set for API access to the attendance_marks API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_attendance_marks_api_pass)) {
+			\debugging('No password is set for API access to the attendance_marks API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_attendance_marks_api_base)) {
+			\debugging('No base URI is set for API access to the attendance_marks API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_attendance_marks_api_namespace)) {
+			\debugging('No namespace is set for API access to the attendance_marks API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_attendance_marks_api_route)) {
+			\debugging('No route is set for API access to the attendance_marks API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_attendance_summaries_api_user)) {
+			\debugging('No username is set for API access to the attendance_summaries API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_attendance_summaries_api_pass)) {
+			\debugging('No password is set for API access to the attendance_summaries API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_attendance_summaries_api_base)) {
+			\debugging('No base URI is set for API access to the attendance_summaries API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_attendance_summaries_api_namespace)) {
+			\debugging('No namespace is set for API access to the attendance_summaries API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_attendance_summaries_api_route)) {
+			\debugging('No route is set for API access to the attendance_summaries API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_terms_api_base)) {
+			\debugging('No base URI is set for API access to the terms API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_terms_api_namespace)) {
+			\debugging('No namespace is set for API access to the terms API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_terms_api_route)) {
+			\debugging('No route is set for API access to the terms API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+
+		$this->api_configurations_by_endpoint['attendance'] = new \stdClass();
+		$this->api_configurations_by_endpoint['attendance']->marks_username  = $CFG->report_parentprogressview_attendance_marks_api_user;
+		$this->api_configurations_by_endpoint['attendance']->marks_password  = $CFG->report_parentprogressview_attendance_marks_api_pass;
+		$this->api_configurations_by_endpoint['attendance']->marks_base      = $CFG->report_parentprogressview_attendance_marks_api_base;
+		$this->api_configurations_by_endpoint['attendance']->marks_namespace = $CFG->report_parentprogressview_attendance_marks_api_namespace;
+		$this->api_configurations_by_endpoint['attendance']->marks_route     = $CFG->report_parentprogressview_attendance_marks_api_route;
+
+		$this->api_configurations_by_endpoint['attendance']->summaries_username  = $CFG->report_parentprogressview_attendance_summaries_api_user;
+		$this->api_configurations_by_endpoint['attendance']->summaries_password  = $CFG->report_parentprogressview_attendance_summaries_api_pass;
+		$this->api_configurations_by_endpoint['attendance']->summaries_base      = $CFG->report_parentprogressview_attendance_summaries_api_base;
+		$this->api_configurations_by_endpoint['attendance']->summaries_namespace = $CFG->report_parentprogressview_attendance_summaries_api_namespace;
+		$this->api_configurations_by_endpoint['attendance']->summaries_route     = $CFG->report_parentprogressview_attendance_summaries_api_route;
+
+		$this->api_configurations_by_endpoint['attendance']->terms_base      = $CFG->report_parentprogressview_terms_api_base;
+		$this->api_configurations_by_endpoint['attendance']->terms_namespace = $CFG->report_parentprogressview_terms_api_namespace;
+		$this->api_configurations_by_endpoint['attendance']->terms_route     = $CFG->report_parentprogressview_terms_api_route;
+
+
+		if (empty($CFG->report_parentprogressview_behaviour_api_user)) {
+			\debugging('No username is set for API access to the behaviour API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_behaviour_api_pass)) {
+			\debugging('No password is set for API access to the behaviour API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_behaviour_api_base)) {
+			\debugging('No base URI is set for API access to the behaviour API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_behaviour_api_namespace)) {
+			\debugging('No namespace is set for API access to the behaviour API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+		if (empty($CFG->report_parentprogressview_behaviour_api_route)) {
+			\debugging('No route is set for API access to the behaviour API. Normally this should be set in the plugin\'s settings in Site Administration.', DEBUG_NORMAL);
+		}
+
+		$this->api_configurations_by_endpoint['behaviour']->username       = $CFG->report_parentprogressview_behaviour_api_user;
+		$this->api_configurations_by_endpoint['behaviour']->password       = $CFG->report_parentprogressview_behaviour_api_pass;
+
+		$this->api_configurations_by_endpoint['behaviour']->base           = $CFG->report_parentprogressview_behaviour_api_base;
+		$this->api_configurations_by_endpoint['behaviour']->namespace      = $CFG->report_parentprogressview_behaviour_api_namespace;
+		$this->api_configurations_by_endpoint['behaviour']->route          = $CFG->report_parentprogressview_behaviour_api_route;
+
+		require_once(dirname(__FILE__) . '/../local/hub_api_request.php');
+
 	}
 
 
