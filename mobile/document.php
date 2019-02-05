@@ -43,6 +43,10 @@ require_once($CFG->dirroot . '/webservice/lib.php');
 //
 header('Access-Control-Allow-Origin: *');
 
+// TODO cache control, robots,etc
+header('X-Robots-Tag: noindex, nofollow');
+header('Cache-Control: private');
+
 // Authenticate the user.
 $token = required_param('token', PARAM_ALPHANUM);
 $id = required_param( 'id', PARAM_INT );

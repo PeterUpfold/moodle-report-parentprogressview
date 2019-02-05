@@ -119,10 +119,11 @@ class achievements_page implements renderable, templatable {
 	}
 
 	/**
-	 * Export the data for use in the Mustache template.
+	 * Return the data for use in the template.
+	 * @return \stdClass
 	 */
-	public function export_for_template(renderer_base $output) {
-		global $DB;
+	public function prepare_data($include_form = true) {
+		global $DB, $CFG;
 		$data = new stdClass();
 
 		$output = array();
@@ -210,12 +211,23 @@ class achievements_page implements renderable, templatable {
 		$data->featurehelp = get_string('achievementfeaturehelp', 'report_parentprogressview');
 		$data->featurename = get_string('achievementfeaturename', 'report_parentprogressview');
 	
-		require_once( dirname(__FILE__) . '/../local/daterange_form.php');
-		$form = new \report_parentprogressview\local\daterange_form(null, null, 'post');
-		$form->setDefault('datefrom', strtotime($this->earliest_date));
-		$form->setDefault('dateto',  strtotime($this->latest_date));
-		$data->daterange_form = $form->render();
+		if ($include_form) {
+			require_once( dirname(__FILE__) . '/../local/daterange_form.php');
+			$form = new \report_parentprogressview\local\daterange_form(null, null, 'post');
+			$form->setDefault('datefrom', strtotime($this->earliest_date));
+			$form->setDefault('dateto',  strtotime($this->latest_date));
+			$data->daterange_form = $form->render();
+		}
 
 		return $data;
+	
+	}
+
+	/**
+	 * Export the data for use in the Mustache template.
+	 */
+	public function export_for_template(renderer_base $output) {
+	
+		return $this->prepare_data(true);
 	}
 };

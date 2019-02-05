@@ -32,13 +32,82 @@
 				<%/ documents %>
 			</ion-list>
 			<ion-list class="achievement" data-pupil="<% user.id %>" style="display:none;">
-				Achievement
+
 			</ion-list>
 			<ion-list class="behaviour" data-pupil="<% user.id %>" style="display:none;">
 				Behaviour
 			</ion-list>
 			<ion-list class="attendance" data-pupil="<% user.id %>" style="display:none;">
-				Attendance
+				<ion-grid>
+					<ion-row>
+						<ion-col>
+							<ion-card>
+								<ion-card-header>
+									{{ 'plugin.report_parentprogressview.pcntpresent' | translate }}
+								</ion-card-header>
+								<ion-card-content>
+									<h1><% attendance.pcnt_present %></h1>
+								</ion-card-content>
+							</ion-card>
+						</ion-col>
+						<ion-col>
+							<ion-card>
+								<ion-card-header>
+									{{ 'plugin.report_parentprogressview.pcntauthorisedabsences' | translate }}
+								</ion-card-header>
+								<ion-card-content>
+									<h1><% attendance.pcnt_authorised_absences %></h1>
+								</ion-card-content>
+							</ion-card>
+						</ion-col>
+						<ion-col>
+							<ion-card>
+								<ion-card-header>
+									{{ 'plugin.report_parentprogressview.pcntunauthorisedabsences' | translate }}
+								</ion-card-header>
+								<ion-card-content>
+									<h1><% attendance.pcnt_unauthorised_absences %></h1>
+								</ion-card-content>
+							</ion-card>
+						</ion-col>
+						<ion-col>
+							<ion-card>
+								<ion-card-header>
+									{{ 'plugin.report_parentprogressview.pcntunexplainedabsences' | translate }}
+								</ion-card-header>
+								<ion-card-content>
+									<h1><% attendance.pcnt_unexplained_absences %></h1>
+								</ion-card-content>
+							</ion-card>
+						</ion-col>
+						<ion-col>
+							<ion-card>
+								<ion-card-header>
+									{{ 'plugin.report_parentprogressview.pcntlatebeforereg' | translate }}
+								</ion-card-header>
+								<ion-card-content>
+									<h1><% attendance.pcnt_late_before_reg %></h1>
+								</ion-card-content>
+							</ion-card>
+						</ion-col>
+						<ion-col>
+							<ion-card>
+								<ion-card-header>
+									{{ 'plugin.report_parentprogressview.pcntlateafterreg' | translate }}
+								</ion-card-header>
+								<ion-card-content>
+									<h1><% attendance.pcnt_late_after_reg %></h1>
+								</ion-card-content>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<%={{ }}=%>
+						{{{ attendance.table }}}
+						{{=<% %>=}}
+					</ion-row>
+				</ion-grid>
+				
 			</ion-list>
 		</div>
 

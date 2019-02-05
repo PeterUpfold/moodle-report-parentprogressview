@@ -114,11 +114,13 @@ class behaviour_page implements renderable, templatable {
 		$this->latest_date = $date_ranges->latest_date;
 	}
 
+
 	/**
-	 * Export the data for use in the Mustache template.
+	 * Return the data for use in the template.
+	 * @return \stdClass
 	 */
-	public function export_for_template(renderer_base $output) {
-		global $DB;
+	public function prepare_data($include_form = true) {
+		global $DB, $CFG;
 		$data = new stdClass();
 
 		$output = array();
@@ -186,7 +188,14 @@ class behaviour_page implements renderable, templatable {
 		$form->setDefault('datefrom', strtotime($this->earliest_date));
 		$form->setDefault('dateto',  strtotime($this->latest_date));
 		$data->daterange_form = $form->render();
-
 		return $data;
+	}
+
+	/**
+	 * Export the data for use in the Mustache template.
+	 */
+	public function export_for_template(renderer_base $output) {
+	
+		return $this->prepare_data(true);
 	}
 };

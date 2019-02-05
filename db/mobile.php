@@ -32,7 +32,7 @@ $addons = array(
 				'displaydata' => array(
 					'icon'  => 'paper',
 					'class' => '',
-					//'title' => 'Demo Title Parent Progress View', /* TODO can't get this to work without prefixing the title get_string('pluginname', 'report_parentprogress'),*/
+					'title' => get_string('pluginname', 'report_parentprogress'),
 				),
 				'delegate'    => 'CoreMainMenuDelegate', // add to main app menu
 				'method'      => 'mobile_documents_view',
@@ -47,7 +47,25 @@ $addons = array(
 			array('documentsfeaturename', 'report_parentprogressview'),
 			array('achievementfeaturename', 'report_parentprogressview'),
 			array('behaviourfeaturename', 'report_parentprogressview'),
-			array('attendancefeaturename', 'report_parentprogressview')
+			array('attendancefeaturename', 'report_parentprogressview'),
+			array('pcntpresent', 'report_parentprogressview'),
+			array('pcntauthorisedabsences', 'report_parentprogressview'),
+			array('pcntunauthorisedabsences', 'report_parentprogressview'),
+			array('pcntunexplainedabsences', 'report_parentprogressview'),
+			array('pcntlatebeforereg', 'report_parentprogressview'),
+			array('pcntlateafterreg', 'report_parentprogressview'),
+			array('present', 'report_parentprogressview'),
+			array('authorisedabsences', 'report_parentprogressview'),
+			array('unauthorisedabsences', 'report_parentprogressview'),
+			array('unexplainedabsences', 'report_parentprogressview'),
+			array('latebeforereg', 'report_parentprogressview'),
+			array('lateafterreg', 'report_parentprogressview'),
+			array('attendancemarkstableheading', 'report_parentprogressview'),
+			array('achievementpointslabel', 'report_parentprogressview'),
+			array('behaviourpointslabel', 'report_parentprogressview'),
+			array('achievementotalsheader', 'report_parentprogressview'),
+			array('noattendancesummaryplaceholder', 'report_parentprogressview'),
+			array('noattendancesummary', 'report_parentprogressview'),
 		)
 	)
 
