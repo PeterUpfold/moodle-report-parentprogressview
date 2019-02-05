@@ -1,0 +1,8 @@
+table.flexible {
+	width:100%;
+	border-collapse: collapse;
+}
+
+table.flexible td, table.flexible tr, table.flexible th {
+	border: 1px solid #000;
+}

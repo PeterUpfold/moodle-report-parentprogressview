@@ -39,6 +39,10 @@ $addons = array(
 				'offlinefunctions' => array(
 					'mobile_documents_view' => array(),
 
+				),
+				'styles'     => array(
+					'url'     => 'report/parentprogressview/mobile/styles.css',
+					'version' => @filemtime(dirname(__FILE__) . '/../mobile/styles.css')
 				)
 			)
 		),
