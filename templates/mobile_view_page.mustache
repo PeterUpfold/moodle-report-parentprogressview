@@ -32,14 +32,50 @@
 				<%/ documents %>
 			</ion-list>
 			<ion-list class="achievement" data-pupil="<% user.id %>" style="display:none;">
-						<%={{ }}=%>
-						{{{ achievements.ion_list }}}
-						{{=<% %>=}}
+				<ion-item>
+						<ion-grid>
+							<ion-row>
+								<ion-col>
+									<ion-card>
+										<ion-card-header>
+											{{ 'plugin.report_parentprogressview.achievementpointslabel' | translate }}
+										</ion-card-header>
+										<ion-card-content>
+											<h1><% achievements.total_achievement_points %></h1>
+										</ion-card-content>
+									</ion-card>
+								</ion-col>
+								<ion-col>
+									<ion-card>
+										<ion-card-header>
+											{{ 'plugin.report_parentprogressview.behaviourpointslabel' | translate }}
+										</ion-card-header>
+										<ion-card-content>
+											<h1><% achievements.total_behaviour_points %></h1>
+										</ion-card-content>
+									</ion-card>
+								</ion-col>
+							</ion-row>
+
+						</ion-grid>
+				</ion-item>
+				<ion-item>
+						<ion-list>
+							<ion-list-header>
+								{{ 'plugin.report_parentprogressview.achievementitemsheader' | translate }}
+							</ion-list-header>
+							<ion-item>
+								<%={{ }}=%>
+								{{{ achievements.ion_grid }}}
+								{{=<% %>=}}
+							</ion-item>
+						</ion-list>
+				</ion-item>
 			</ion-list>
 			<ion-list class="behaviour" data-pupil="<% user.id %>" style="display:none;">
 				Behaviour
 						<%={{ }}=%>
-						{{{ behaviour.ion_list }}}
+						{{{ behaviour.ion_grid }}}
 						{{=<% %>=}}
 			</ion-list>
 			<ion-list class="attendance" data-pupil="<% user.id %>" style="display:none;">
@@ -107,9 +143,13 @@
 						</ion-col>
 					</ion-row>
 					<ion-row>
+						<ion-list>
+							<ion-item>
 						<%={{ }}=%>
-						{{{ attendance.ion_list }}}
+						{{{ attendance.ion_grid }}}
 						{{=<% %>=}}
+							</ion-item>
+						</ion-list>
 					</ion-row>
 				</ion-grid>
 				

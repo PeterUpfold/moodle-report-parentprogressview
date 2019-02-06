@@ -155,7 +155,7 @@ class attendance_page implements renderable, templatable {
 	public function prepare_data($include_form = true) {
 		global $DB, $CFG;
 
-		require_once(dirname(__FILE__) . '/mobile_ion_list.php');
+		require_once(dirname(__FILE__) . '/mobile_ion_grid.php');
 
 		$data = new stdClass();
 
@@ -205,14 +205,14 @@ class attendance_page implements renderable, templatable {
 				$output[$o_count]->table = ob_get_clean();
 
 
-				$ion_list = new mobile_ion_list(
+				$ion_grid = new mobile_ion_grid(
 					$result,
 					array(
 						'session',
 						'mark_description'
 					)
 				);
-				$output[$o_count]->ion_list = $ion_list->render();
+				$output[$o_count]->ion_grid = $ion_grid->render();
 
 				// fill summary data with placeholder strings for now -- replace below if we get a data match
 				$output[$o_count]->pcnt_present = get_string('noattendancesummaryplaceholder', 'report_parentprogressview');

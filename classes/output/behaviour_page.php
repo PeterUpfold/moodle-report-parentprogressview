@@ -123,7 +123,7 @@ class behaviour_page implements renderable, templatable {
 		global $DB, $CFG;
 		$data = new stdClass();
 
-		require_once(dirname(__FILE__) . '/mobile_ion_list.php');
+		require_once(dirname(__FILE__) . '/mobile_ion_grid.php');
 		$output = array();
 		$o_count = 0;
 
@@ -170,7 +170,7 @@ class behaviour_page implements renderable, templatable {
 				$output[$o_count]->table = ob_get_clean();
 
 				// list for mobile app
-				$ion_list = new mobile_ion_list(
+				$ion_grid = new mobile_ion_grid(
 					$result,
 					array(
 						'incident_date',
@@ -179,7 +179,7 @@ class behaviour_page implements renderable, templatable {
 					)
 				);
 
-				$output[$o_count]->ion_list = $ion_list->render();
+				$output[$o_count]->ion_grid = $ion_grid->render();
 
 				++$o_count;
 

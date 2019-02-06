@@ -66,6 +66,7 @@ $addons = array(
 			array('lateafterreg', 'report_parentprogressview'),
 			array('attendancemarkstableheading', 'report_parentprogressview'),
 			array('achievementpointslabel', 'report_parentprogressview'),
+			array('achievementitemsheader', 'report_parentprogressview'),
 			array('behaviourpointslabel', 'report_parentprogressview'),
 			array('achievementotalsheader', 'report_parentprogressview'),
 			array('noattendancesummaryplaceholder', 'report_parentprogressview'),
