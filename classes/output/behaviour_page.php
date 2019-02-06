@@ -123,6 +123,7 @@ class behaviour_page implements renderable, templatable {
 		global $DB, $CFG;
 		$data = new stdClass();
 
+		require_once(dirname(__FILE__) . '/mobile_ion_list.php');
 		$output = array();
 		$o_count = 0;
 
@@ -167,6 +168,19 @@ class behaviour_page implements renderable, templatable {
 
 				$table->finish_output();
 				$output[$o_count]->table = ob_get_clean();
+
+				// list for mobile app
+				$ion_list = new mobile_ion_list(
+					$result,
+					array(
+						'incident_date',
+						'type',
+						'points'
+					)
+				);
+
+				$output[$o_count]->ion_list = $ion_list->render();
+
 				++$o_count;
 
 			}

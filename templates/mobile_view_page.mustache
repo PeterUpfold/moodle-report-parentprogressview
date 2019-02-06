@@ -32,10 +32,15 @@
 				<%/ documents %>
 			</ion-list>
 			<ion-list class="achievement" data-pupil="<% user.id %>" style="display:none;">
-
+						<%={{ }}=%>
+						{{{ achievements.ion_list }}}
+						{{=<% %>=}}
 			</ion-list>
 			<ion-list class="behaviour" data-pupil="<% user.id %>" style="display:none;">
 				Behaviour
+						<%={{ }}=%>
+						{{{ behaviour.ion_list }}}
+						{{=<% %>=}}
 			</ion-list>
 			<ion-list class="attendance" data-pupil="<% user.id %>" style="display:none;">
 				<ion-grid>

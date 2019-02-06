@@ -74,36 +74,41 @@ class mobile_ion_list {
 	 * @return string
 	 */
 	public function render() {
-		$output = '';
+		$ion_output = '';
 
 		if (count($this->data) < 1) {
-			return $output;
+			return $ion_output;
 		}
 
-		$output = '<ion-list>';
+		$ion_output = '<ion-list>';
 
 
-		foreach($this->data as $item) {
+		foreach($this->data as &$item) {
 			if (!($item instanceof stdClass)) {
 				throw new \InvalidArgumentException('The data passed to the ion-list renderer was not an array of stdClass objects.');
 			}
 
-			$output .= '<ion-item>';
+
+			$ion_output .= '<ion-item>';
 
 
 			// extract keys
 			foreach($this->keys as $key) {
-				$output .= $key;
-				$output .= \s( $item->$key ) . ' · ';
+				//$ion_output .= $key;
+				//var_dump($item->$key);
+				$ion_output .=  $item->$key . '&nbsp;&#8226;&nbsp;';
 			}
+
+			// strip last bullet character
+			$ion_output = substr($ion_output, 0, strrpos($ion_output, '&#8226'));
 			
-			$output .= '</ion-item>';
+			$ion_output .= '</ion-item>';
 		}
 
 		
-		$output .= '</ion-list>';
+		$ion_output .= '</ion-list>';
 
-		return $output;
+		return $ion_output;
 
 	}
 

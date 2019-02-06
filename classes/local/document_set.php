@@ -343,30 +343,37 @@ class document_set {
 
 		$output = $this->get_documents_by_pupil_username($earliest_published_date, $latest_published_date, $include_hidden);
 
+
 		// add other data
 		//
-		foreach($output as $key => $pupil) {
+		foreach($output as $key => &$pupil) {
 			// match this $pupil to pupil in other arrays
+			//
 
-			foreach($attendance_by_pupil->attendance_marks_by_pupil as $inner_key => $att_pupil) {
+			foreach($attendance_by_pupil->attendance_marks_by_pupil as $inner_key => &$att_pupil) {
 				if ($att_pupil->user->id == $pupil->user->id) {
-					$output[$key]->attendance = $att_pupil;
+					$pupil_attendance = $att_pupil;
 					break;
 				}
 			}
-			foreach($achievements_by_pupil->achievements_by_pupil as $inner_key => $ach_pupil) {
+			foreach($achievements_by_pupil->achievements_by_pupil as $inner_key => &$ach_pupil) {
 
 				if ($ach_pupil->user->id == $pupil->user->id) {
-					$output[$key]->achievements = $ach_pupil;
+					$pupil_achievements = $ach_pupil;
 					break;
 				}
 			}
-			foreach($behaviour_by_pupil->behaviour_by_pupil as $inner_key => $ach_pupil) {
+			foreach($behaviour_by_pupil->behaviour_by_pupil as $inner_key => $beh_pupil) {
 				if ($beh_pupil->user->id == $pupil->user->id) {
-					$output[$key]->behaviour = $beh_pupil;
+					$pupil_behaviour = $beh_pupil;
 					break;
 				}
 			}
+
+			$pupil->attendance = $pupil_attendance;
+			$pupil->achievements = $pupil_achievements;
+			$pupil->behaviour = $pupil_behaviour;
+			
 		}
 
 

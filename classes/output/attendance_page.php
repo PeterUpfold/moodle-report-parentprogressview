@@ -204,13 +204,15 @@ class attendance_page implements renderable, templatable {
 				$table->finish_output();
 				$output[$o_count]->table = ob_get_clean();
 
-				$output[$o_count]->ion_list = (new mobile_ion_list(
+
+				$ion_list = new mobile_ion_list(
 					$result,
 					array(
 						'session',
 						'mark_description'
 					)
-				))->render();
+				);
+				$output[$o_count]->ion_list = $ion_list->render();
 
 				// fill summary data with placeholder strings for now -- replace below if we get a data match
 				$output[$o_count]->pcnt_present = get_string('noattendancesummaryplaceholder', 'report_parentprogressview');
