@@ -30,6 +30,12 @@
 					</ion-label>
 				</ion-item>
 				<%/ documents %>
+				<%^ documents %>
+				<ion-item>
+					{{ 'plugin.report_parentprogressview.nodocumentstoview' | translate }}
+				</ion-item>
+				<%/ documents %>
+			<ion-item-divider></ion-item-divider>
 			</ion-list>
 			<ion-list class="achievement" data-pupil="<% user.id %>" style="display:none;">
 				<ion-item>
@@ -197,7 +203,6 @@
 			</ion-list>
 		</div>
 
-			<ion-item-divider></ion-item-divider>
 		</div>
 		<%/ documents_by_pupil %>
 	</ion-list>
