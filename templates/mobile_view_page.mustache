@@ -26,7 +26,7 @@
 				<%# documents %>
 				<ion-item detail tappable class="report_parentprogressview_document_item" data-documentid="<% id %>" (click)="documentItemClick(<% id %>)">
 					<ion-label>
-						Report <% id %> for <% user.firstname %>
+						<% user.firstname %> <% user.lastname %>: <em><% date_published_userdate %></em>
 					</ion-label>
 				</ion-item>
 				<%/ documents %>
@@ -119,7 +119,7 @@
 				<ion-grid>
 					<ion-row>
 						<ion-col>
-							<ion-card>
+							<ion-card data-value="<% attendance.pcnt_present %>" class="attendance-colour-coded-card <% attendance.pcnt_present_class %>">
 								<ion-card-header>
 									{{ 'plugin.report_parentprogressview.pcntpresent' | translate }}
 								</ion-card-header>

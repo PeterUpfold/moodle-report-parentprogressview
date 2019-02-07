@@ -1,8 +1,22 @@
-table.flexible {
-	width:100%;
-	border-collapse: collapse;
+.no-risk {
+	background-color: #60ea8e;
 }
 
-table.flexible td, table.flexible tr, table.flexible th {
-	border: 1px solid #000;
+.risk-of-underachievement {
+	background-color: #f7fc9c;
 }
+
+.serious-risk-of-underachievement {
+	background-color: #fcd388;
+}
+
+.extreme-risk {
+	background-color: #fcb09f;
+}
+
+.severe-risk-of-extreme-risk {
+	background-color: #fcc09f;
+}
+
+
+
