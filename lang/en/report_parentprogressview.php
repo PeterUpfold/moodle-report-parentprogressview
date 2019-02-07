@@ -203,3 +203,4 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
  $string['achievementitemsheader'] = 'Achievement Point Details';
 
  $string['apinotloggedin'] = 'Not able to validate that you are logged in.';
+ $string['nodatainmobilegridview'] = 'There is no information to show.';

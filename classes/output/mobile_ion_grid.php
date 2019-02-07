@@ -77,12 +77,14 @@ class mobile_ion_grid {
 		$ion_output = '';
 
 		if (count($this->data) < 1) {
+			$ion_output .= '<ion-row><ion-col>' . get_string('nodatainmobilegridview', 'report_parentprogressview') . '</ion-col></ion-row>';
 			return $ion_output;
 		}
 
 		$ion_output = '<ion-grid>';
 
 
+		//$ion_output .= '<ion-row>Data count: ' . count($this->data) . '</ion-row>';
 		foreach($this->data as &$item) {
 			if (!($item instanceof stdClass)) {
 				throw new \InvalidArgumentException('The data passed to the ion-grid renderer was not an array of stdClass objects.');
@@ -93,7 +95,14 @@ class mobile_ion_grid {
 
 			// extract keys
 			foreach($this->keys as $key) {
-				$ion_output .=  '<ion-col>' . \s($item->$key) . '</ion-col>';
+
+				$content = $item->$key;
+
+				if (strpos($key, 'date') !== false) {
+					$content = userdate(strtotime($content), get_string('strftimedateshort'));
+				}
+
+				$ion_output .=  '<ion-col>' . \s($content) . '</ion-col>';
 			}
 
 			$ion_output .= '</ion-row>';

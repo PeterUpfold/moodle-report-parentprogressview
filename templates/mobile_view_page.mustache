@@ -73,12 +73,49 @@
 				</ion-item>
 			</ion-list>
 			<ion-list class="behaviour" data-pupil="<% user.id %>" style="display:none;">
-				Behaviour
-						<%={{ }}=%>
-						{{{ behaviour.ion_grid }}}
-						{{=<% %>=}}
+				<ion-item>
+						<ion-grid>
+							<ion-row>
+								<ion-col>
+									<ion-card>
+										<ion-card-header>
+											{{ 'plugin.report_parentprogressview.achievementpointslabel' | translate }}
+										</ion-card-header>
+										<ion-card-content>
+											<h1><% achievements.total_achievement_points %></h1>
+										</ion-card-content>
+									</ion-card>
+								</ion-col>
+								<ion-col>
+									<ion-card>
+										<ion-card-header>
+											{{ 'plugin.report_parentprogressview.behaviourpointslabel' | translate }}
+										</ion-card-header>
+										<ion-card-content>
+											<h1><% achievements.total_behaviour_points %></h1>
+										</ion-card-content>
+									</ion-card>
+								</ion-col>
+							</ion-row>
+
+						</ion-grid>
+				</ion-item>
+				<ion-item>
+						<ion-list>
+							<ion-list-header>
+								{{ 'plugin.report_parentprogressview.behaviourpointslabel' | translate }}
+							</ion-list-header>
+							<ion-item>
+								<%={{ }}=%>
+								{{{ behaviour.ion_grid }}}
+								{{=<% %>=}}
+							</ion-item>
+						</ion-list>
+				</ion-item>
+
 			</ion-list>
 			<ion-list class="attendance" data-pupil="<% user.id %>" style="display:none;">
+				<ion-item>
 				<ion-grid>
 					<ion-row>
 						<ion-col>
@@ -143,15 +180,19 @@
 						</ion-col>
 					</ion-row>
 					<ion-row>
-						<ion-list>
-							<ion-item>
-						<%={{ }}=%>
-						{{{ attendance.ion_grid }}}
-						{{=<% %>=}}
-							</ion-item>
-						</ion-list>
-					</ion-row>
+											</ion-row>
 				</ion-grid>
+				<ion-list>
+						<ion-list-header>
+							{{ 'plugin.report_parentprogressview.attendancemarkstableheading' | translate }}
+						</ion-list-header>
+						<ion-item>
+							<%={{ }}=%>
+							{{{ attendance.ion_grid }}}
+							{{=<% %>=}}
+						</ion-item>
+				</ion-list>
+				</ion-item>
 				
 			</ion-list>
 		</div>

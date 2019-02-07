@@ -71,6 +71,7 @@ $addons = array(
 			array('achievementotalsheader', 'report_parentprogressview'),
 			array('noattendancesummaryplaceholder', 'report_parentprogressview'),
 			array('noattendancesummary', 'report_parentprogressview'),
+			array('attendancemarkstableheading', 'report_parentprogressview'),
 		)
 	)
 
