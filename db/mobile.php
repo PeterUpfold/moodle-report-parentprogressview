@@ -32,7 +32,7 @@ $addons = array(
 				'displaydata' => array(
 					'icon'  => 'paper',
 					'class' => '',
-					'title' => get_string('pluginname', 'report_parentprogress'),
+					'title' => get_string('pluginname', 'report_parentprogressview'),
 				),
 				'delegate'    => 'CoreMainMenuDelegate', // add to main app menu
 				'method'      => 'mobile_documents_view',

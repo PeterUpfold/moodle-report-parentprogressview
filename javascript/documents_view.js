@@ -2,7 +2,7 @@
 
 var that = this;
 
-
+document.querySelectorAll('ion-segment-button[value="documents"]').forEach(function(item) { item.click(); });
 
 this.documentItemClick = function(id) {
 

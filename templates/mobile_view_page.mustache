@@ -7,7 +7,7 @@
 			<p class="item-heading"><% user.firstname %> <% user.lastname %></p>
 		</ion-list-header>
 		<ion-segment>
-			<ion-segment-button class="segment-button segment-activated" value="documents" (click)="triggerDocumentsView(<% user.id %>)">
+			<ion-segment-button class="segment-button segment-activated" value="documents" (click)="triggerDocumentsView(<% user.id %>)" checked="true">
 				{{ 'plugin.report_parentprogressview.documentsfeaturename' | translate }}
 			</ion-segment-button>
 			<ion-segment-button value="achievement" (click)="triggerAchievementView(<% user.id %>)">
