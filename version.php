@@ -27,7 +27,7 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
  
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2019020702;			// YYYYMMDDXX where XX is an incrementing revision number for that day
+$plugin->version = 2019020703;			// YYYYMMDDXX where XX is an incrementing revision number for that day
 $plugin->requires  = 2016052300;			// required Moodle version.tring
 $plugin->component = 'report_parentprogressview';	// Full name of the plugin
 $plugin->maturity  = MATURITY_STABLE;			// why not?
