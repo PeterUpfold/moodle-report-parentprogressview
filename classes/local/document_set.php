@@ -255,9 +255,10 @@ class document_set {
 
 		$stmt = $this->conn->conn->prepare( $sql );
 
+		$this->documents = []; // clear documents in case some were fetched previously when invoking to find default published dates
 
 		foreach($attached_usernames as $username) {
-			
+
 			if (!$stmt) {
 				throw new \Exception('Unable to prepare the database query.');
 			}
@@ -321,7 +322,7 @@ class document_set {
 
 	/**
 	 * Return an associative array of documents and all other data by pupil username. Convenience function
-	 * to allow the mobile app data, which is presented as a single multi-tabbed view to be pulled at once.
+	 * to allow the mobile app data, which is presented as a single multi-tabbed view, to be pulled at once.
 	 */
 	public function get_documents_and_other_data_by_pupil_username($earliest_published_date = null, $latest_published_date = null, $include_hidden = false) {
 		global $DB, $USER;
@@ -349,6 +350,7 @@ class document_set {
 		foreach($output as $key => &$pupil) {
 			// match this $pupil to pupil in other arrays
 			//
+			//
 
 			foreach($attendance_by_pupil->attendance_marks_by_pupil as $inner_key => &$att_pupil) {
 				if ($att_pupil->user->id == $pupil->user->id) {
@@ -373,7 +375,7 @@ class document_set {
 			$pupil->attendance = $pupil_attendance;
 			$pupil->achievements = $pupil_achievements;
 			$pupil->behaviour = $pupil_behaviour;
-			
+
 		}
 
 
