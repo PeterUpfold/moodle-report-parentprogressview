@@ -25,6 +25,13 @@ This module provides the user interface for parent accounts to use to view docum
  * For reasons of performance, access to documents is achieved through direct access to a target MariaDB database table. Documents are expected to be stored in a format consistent with the **tvs-mis-documents-to-moodle** WordPress plugin. Other data access is performed through the WP REST API as described.
    * Accordingly, a MariaDB database user account with limited privileges is configured for this access.
 
+Rewrite Rules
+=============
+
+You must configure your web server to have a rewrite rule similar to the following to allow document access through the mobile app:
+
+    rewrite ^/moodle/report/parentprogressview/mobile/document/([0-9]+)/([0-9a-f]+)/document.pdf$ /moodle/report/parentprogressview/mobile/document.php?id=$1&token=$2 last;
+
 Limitations
 ===========
 

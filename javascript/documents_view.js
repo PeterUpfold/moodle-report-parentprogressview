@@ -18,28 +18,22 @@ this.documentItemClick = function(id) {
 	};
 
 	//let uri = siteUrl + '/report/parentprogressview/mobile/document.php?id=' + encodeURIComponent(id) + '&token=' + encodeURIComponent(token);
-	let uri = siteUrl + '/report/parentprogressview/mobile/document/' + encodeURIComponent(id) + '/' + encodeURIComponent(token) + '/document.pdf';
-
-	console.log(uri);
-	/*this.CoreFileHelperProvider.downloadAndOpenFile(uri, 'report_parentprogressview', id).then(function(value) {
-		alert('Promise fulfilled ' + JSON.stringify(value) );
-	}, function(value) {
-		alert('Promise failed ' + JSON.stringify(value));
-	});*/
+	// non-pretty URL above -- not ideal for Android that wants to get mimetype from file extensiono
 	
-	/*
-	this.CoreUtilsProvider.openInApp(uri).then(function(value) {
+	let uri = siteUrl + '/report/parentprogressview/mobile/document/' + encodeURIComponent(id) + '/' + encodeURIComponent(token) + '/document.pdf';
+	let fileObject = {
+		"url": uri
+	};
+
+	this.CoreFileHelperProvider.downloadAndOpenFile(fileObject, 'report_parentprogressview', id).then(function(value) {
 		//alert('Promise fulfilled ' + JSON.stringify(value) );
+		console.log('Fulfilled');
 	}, function(value) {
-		//alert('Promise failed ' + JSON.stringify(value));
+		alert('Failed to open the document. Please check that you are still connected to the Internet.');
+		console.log(JSON.stringify(value));
 	});
-	*/
+	
 
-	this.CoreUtilsProvider.openOnlineFile(uri);
-
-	//debugger;
-	//this.CoreFileHelperProvider.utils.openFile(uri));
-	//window.open(uri);
 }
 
 this.triggerDocumentsView = function(userid) {
