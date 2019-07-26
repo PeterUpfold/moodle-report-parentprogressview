@@ -116,7 +116,8 @@ class common_utilities {
 			
 		}
 		else {
-			return array();
+			// allow us to look at our own data only
+			return array(strtolower($user->username));
 		}
 
 		// now, we have a $pupils array, and can search The Hub's available documents with those usernames
@@ -125,6 +126,10 @@ class common_utilities {
 			$pupil_usernames[] = strtolower($pupil->username);
 		}
 
+		// if no pupil usernames attached, allow us to look at our own data
+		if (count($pupil_usernames) < 1) {
+			$pupil_usernames[] = strtolower($user->username);
+		}
 
 		return $pupil_usernames;
 	}

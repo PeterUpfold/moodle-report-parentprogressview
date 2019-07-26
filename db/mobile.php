@@ -73,6 +73,7 @@ $addons = array(
 			array('noattendancesummary', 'report_parentprogressview'),
 			array('attendancemarkstableheading', 'report_parentprogressview'),
 			array('nodocumentstoview', 'report_parentprogressview'),
+			array('noattachedpupils', 'report_parentprogressview'),
 		)
 	)
 

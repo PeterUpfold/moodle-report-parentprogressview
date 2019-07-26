@@ -65,7 +65,7 @@ try {
 	if ( $document != null ) {
 
 		// record the document view as an event
-		\report_parentprogressview\event\document_viewed::create_from_document($document)->trigger(); 
+		\report_parentprogressview\event\mobile_document_viewed::create_from_document($document)->trigger(); 
 
 		header('Content-Type: ' . $document->sanitise_string_for_header($document->mimetype));
 		$output = fopen('php://output', 'w');
