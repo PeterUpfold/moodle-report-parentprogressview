@@ -58,7 +58,7 @@ class mobile {
 
 
 		// get some $data
-		\report_parentprogressview\event\report_viewed::create()->trigger(); //TODO mobile specific?
+		\report_parentprogressview\event\mobile_tab_viewed::create()->trigger(); 
 		$document_set = new \report_parentprogressview\local\document_set($USER);
 
 		// create renderable

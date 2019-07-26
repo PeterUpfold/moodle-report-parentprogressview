@@ -43,7 +43,7 @@ require_once($CFG->dirroot . '/webservice/lib.php');
 //
 header('Access-Control-Allow-Origin: *');
 
-// TODO cache control, robots,etc
+// cache control, robots,etc
 header('X-Robots-Tag: noindex, nofollow');
 header('Cache-Control: private');
 
@@ -65,7 +65,7 @@ try {
 	if ( $document != null ) {
 
 		// record the document view as an event
-		\report_parentprogressview\event\document_viewed::create_from_document($document)->trigger(); //TODO record mobile access
+		\report_parentprogressview\event\document_viewed::create_from_document($document)->trigger(); 
 
 		header('Content-Type: ' . $document->sanitise_string_for_header($document->mimetype));
 		$output = fopen('php://output', 'w');

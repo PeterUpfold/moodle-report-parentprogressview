@@ -31,8 +31,12 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
  $string['intro'] = 'This report allows parents to view reports and other documents as well as see other information about the progress of their children.';
  $string['eventreportviewed'] = 'Parent Progress View page viewed';
  $string['eventreportvieweddescription'] = 'The user with id \'%d\' viewed the main Parent Progress View page.';
+ $string['eventmobiletabviewed'] = 'Parent Progress View mobile tab viewed';
+ $string['eventmobiletabvieweddescription'] = 'The user with id \'%d\' refreshed the Parent Progress View tab within the mobile app.';
  $string['eventdocumentviewed'] = 'Published document viewed or downloaded';
  $string['eventdocumentvieweddescription'] = 'The user with id \'%d\' viewed the document with id \'%d\' and filename \'%s\'.';
+ $string['eventmobiledocumentviewed'] = 'Published document viewed or downloaded using mobile app';
+ $string['eventmobiledocumentvieweddescription'] = 'The user with id \'%d\' viewed the document with id \'%d\' and filename \'%s\' using the mobile app.';
  $string['eventachievementviewed'] = 'Parent Progress View achievements viewed';
  $string['eventachievementvieweddescription'] = 'The user with id \'%d\' viewed the achievements for \'%s\'.';
  $string['eventattendanceviewed'] = 'Parent Progress View attendance viewed';
@@ -204,3 +208,8 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 
  $string['apinotloggedin'] = 'Not able to validate that you are logged in.';
  $string['nodatainmobilegridview'] = 'There is no information to show.';
+
+
+ $string['cachedef_achievements'] = 'Store achievement data -- summaries and incidents';
+ $string['cachedef_behaviour'] = 'Store behaviour data -- summaries and incidents';
+ $string['cachedef_attendance'] = 'Store attendance data -- summaries and marks';
