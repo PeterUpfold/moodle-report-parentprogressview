@@ -253,7 +253,7 @@ class WP_REST_API_Request {
 
 		$response = curl_exec( $this->request ); 
 		
-		$this->status = curl_getinfo( $this->request, CURLINFO_HTTP_CODE );
+		$this->status = curl_getinfo( $this->request, CURLINFO_RESPONSE_CODE );
 
 		$json = json_decode( $response );
 

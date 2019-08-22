@@ -1,7 +1,7 @@
 <?php
 /*
 Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
-    Copyright (C) 2016-17 Test Valley School.
+    Copyright (C) 2016-19 Test Valley School.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

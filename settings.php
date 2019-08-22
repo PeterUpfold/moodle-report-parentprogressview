@@ -1,7 +1,7 @@
 <?php
 /*
 Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
-    Copyright (C) 2016-17 Test Valley School.
+    Copyright (C) 2016-19 Test Valley School.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -385,6 +385,66 @@ $settings->add(new admin_setting_configpasswordunmask(
 	get_string('config_attendance_summaries_api_pass', 'report_parentprogressview'),
 	get_string('config_attendance_summaries_api_pass_desc', 'report_parentprogressview'),
 	''
+));
+
+
+/*** Timetables API settings ***/
+$settings->add(new admin_setting_heading(
+	'report_parentprogressview_timetables_api_header',
+	get_string('config_timetables_api_header', 'report_parentprogressview'),
+	get_string('config_timetables_api_information', 'report_parentprogressview')
+));
+
+$settings->add(new admin_setting_configtext(
+	'report_parentprogressview_timetables_api_base',
+	get_string('config_timetables_api_base', 'report_parentprogressview'),
+	get_string('config_timetables_api_base_desc', 'report_parentprogressview'),
+	'',
+	PARAM_NOTAGS,
+	null
+));
+
+$settings->add(new admin_setting_configtext(
+	'report_parentprogressview_timetables_api_namespace',
+	get_string('config_timetables_api_namespace', 'report_parentprogressview'),
+	get_string('config_timetables_api_namespace_desc', 'report_parentprogressview'),
+	'',
+	PARAM_NOTAGS,
+	null
+));
+
+$settings->add(new admin_setting_configtext(
+	'report_parentprogressview_timetables_api_route',
+	get_string('config_timetables_api_route', 'report_parentprogressview'),
+	get_string('config_timetables_api_route_desc', 'report_parentprogressview'),
+	'',
+	PARAM_NOTAGS,
+	null
+));
+
+$settings->add(new admin_setting_configtext(
+	'report_parentprogressview_timetables_api_user',
+	get_string('config_timetables_api_user', 'report_parentprogressview'),
+	get_string('config_timetables_api_user_desc', 'report_parentprogressview'),
+	'',
+	PARAM_NOTAGS,
+	null
+));
+
+$settings->add(new admin_setting_configpasswordunmask(
+	'report_parentprogressview_timetables_api_pass',
+	get_string('config_timetables_api_pass', 'report_parentprogressview'),
+	get_string('config_timetables_api_pass_desc', 'report_parentprogressview'),
+	''
+));
+
+$settings->add(new admin_setting_configtextarea(
+	'report_parentprogressview_timetables_html_prepend',
+	get_string('config_timetables_html_prepend', 'report_parentprogressview'),
+	get_string('config_timetables_html_prepend_desc', 'report_parentprogressview'),
+	'',
+	PARAM_RAW,
+	null
 ));
 
 /*** Report Display Settings ***/

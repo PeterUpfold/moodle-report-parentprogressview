@@ -1,7 +1,7 @@
 <?php
 /*
 Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
-    Copyright (C) 2016-17 Test Valley School.
+    Copyright (C) 2016-19 Test Valley School.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -61,6 +61,8 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
  $string['behaviourfeaturehelp'] = 'The Behaviour page shows the recent behaviour points your child has accumulated. Please remember that this system is updated once per day. If you have any questions about behaviour points, do not hesitate to contact your child\'s form tutor in the first instance.';
  $string['attendancefeaturehelp'] = 'The Attendance page shows your child\'s recent attendance marks for both morning and afternoon registration. Please note that this system is updated twice per day and there will therefore be a delay before your child\'s registration marks appear here. If you have any questions about attendance, do not hesitate to contact your child\'s form tutor in the first instance.';
  $string['nopermission'] = 'The specified document does not exist, or you do not have permission to view it.';
+ $string['timetable_nopermission'] = 'The specified timetable does not exist, or you do not have permission to view it.';
+ $string['timetable_nocontent'] = 'A timetable for this user has not yet been published.';
  $string['documentmeta:filename'] = 'Name';
  $string['documentmeta:datepublished'] = 'Date Published to Parents';
  $string['documentmeta:filetype'] = 'File type';
@@ -186,6 +188,27 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 
  $string['config_attendance_summaries_api_pass'] = 'Attendance Summaries API Password';
  $string['config_attendance_summaries_api_pass_desc'] = 'The password to use to authenticate with the attendance summaries API.';
+
+ $string['config_timetables_api_header'] = 'API Access for Timetables';
+ $string['config_timetables_api_information'] = 'These configuration settings define how Parent Progress View will query for timetables.';
+ $string['config_timetables_api_base'] = 'Timetables API Base URI';
+ $string['config_timetables_api_base_desc'] = 'The base URI of the API endpoint from which timetables data can be queried. Usually will end with <em>/wp-json</em>.';
+
+ $string['config_timetables_api_namespace'] = 'Timetables API Namespace';
+ $string['config_timetables_api_namespace_desc'] = 'The API namespace from which timetables data can be queried. Usually <em>/wp/v2/</em>.';
+ 
+ $string['config_timetables_api_route'] = 'Timetables API Route';
+ $string['config_timetables_api_route_desc'] = 'The API route for timetables. Usually <em>timetables</em>.';
+
+ $string['config_timetables_api_user'] = 'Timetables API Username';
+ $string['config_timetables_api_user_desc'] = 'The username to use to authenticate with the timetables API.';
+
+ $string['config_timetables_api_pass'] = 'Timetables API Password';
+ $string['config_timetables_api_pass_desc'] = 'The password to use to authenticate with the timetables API.';
+
+ $string['config_timetables_html_prepend'] = 'Prepend HTML to Timetables';
+ $string['config_timetables_html_prepend_desc'] = 'This HTML content will be prepended to the timetables when they are requested as an individual page. This could be used, for example, for CSS.';
+
 
  $string['config_parent_roleid'] = 'Parent Role';
  $string['config_parent_roleid_desc'] = 'Choose the \'Parent\' role within your VLE system. This is the role that will be used to verify the relationship between the pupil account and parent account.';
