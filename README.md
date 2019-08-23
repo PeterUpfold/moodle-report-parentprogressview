@@ -31,6 +31,7 @@ Rewrite Rules
 You must configure your web server to have a rewrite rule similar to the following to allow document access through the mobile app:
 
     rewrite ^/moodle/report/parentprogressview/mobile/document/([0-9]+)/([0-9a-f]+)/document.pdf$ /moodle/report/parentprogressview/mobile/document.php?id=$1&token=$2 last;
+    rewrite ^/moodle/report/parentprogressview/mobile/timetable/(\w+)/([0-9a-f]+)/timetable.html$ /moodle/report/parentprogressview/mobile/timetable.php?username=$1&token=$2 last;
 
 Limitations
 ===========

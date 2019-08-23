@@ -3,7 +3,7 @@
 	<ion-list>
 		<%# documents_by_pupil %>
 		<div class="pupil" data-pupil="<% user.id %>">
-		<ion-list-header>
+		<ion-list-header color="primary">
 			<p class="item-heading"><% user.firstname %> <% user.lastname %></p>
 		</ion-list-header>
 		<ion-segment>
@@ -201,6 +201,15 @@
 				</ion-item>
 				
 			</ion-list>
+
+                        <%# timetable %>
+                        <ion-list-header color="medium">{{ 'plugin.report_parentprogressview.timetable_heading' | translate }} <% user.firstname %> <% user.lastname %></ion-list-header>
+                        <ion-item detail tappable class="report_parentprogressview_timetable_item" data-username="<% user.username %>" (click)="timetableItemClick('<% user.username %>')">
+                            <ion-label>
+                                {{ 'plugin.report_parentprogressview.timetable_viewtimetablebutton' | translate }}
+                            </ion-label>
+                        </ion-item>
+                        <%/ timetable %>
 		</div>
 
 		</div>

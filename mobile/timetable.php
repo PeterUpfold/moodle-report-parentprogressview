@@ -19,28 +19,49 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 
 
 /**
- * Output a pupil's timetable as HTML content, where the currently logged in Moodle
- * user has the right to view information relating to that pupil.
+ * Output a pupil's timetable as HTML content for the mobile app, using a web service token.
  *
  * @package report_parentprogressview
  * @author Test Valley School
  */
 
-require(dirname(__FILE__).'/../../config.php');
+/**
+ * AJAX_SCRIPT - exception will be converted into JSON.
+ */
+define('AJAX_SCRIPT', true);
+
+/**
+ * NO_MOODLE_COOKIES - we don't want any cookie.
+ */
+
+define('NO_MOODLE_COOKIES', true);
+
+require(dirname(__FILE__).'/../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
-require_once(dirname(__FILE__) . '/classes/local/common_utilities.php');
-require_once(dirname(__FILE__) . '/classes/local/hub_api_request.php');
+require_once($CFG->dirroot . '/webservice/lib.php');
+require_once(dirname(__FILE__) . '/../classes/local/common_utilities.php');
+require_once(dirname(__FILE__) . '/../classes/local/hub_api_request.php');
+
+// Allow CORS requests.
+//
+header('Access-Control-Allow-Origin: *');
 
 header('X-Robots-Tag: noindex, nofollow');
 header('Cache-Control: private');
 
-require_login(null, false);
+// Authenticate the user.
+$token = required_param('token', PARAM_ALPHANUM);
+
+$webservicelib = new webservice();
+$authenticationinfo = $webservicelib->authenticate_user($token);
+
+require_capability('report/parentprogressview:view', context_system::instance());
+
 $target_username = required_param('username', PARAM_ALPHANUM);
-$action = optional_param('action', '', PARAM_ALPHA);
 $target_username = strtolower($target_username);
 
 if (!in_array($target_username, \report_parentprogressview\local\common_utilities::get_attached_usernames($USER))) {
-	//header('HTTP/1.1 403 Forbidden');
+        header('HTTP/1.1 403 Forbidden');
 	throw new Exception(get_string('timetable_nopermission', 'report_parentprogressview'));
 }
 
@@ -61,18 +82,11 @@ $result = $request->request();
 
 // attempt to parse rendered content
 if (count($result) < 1) {
-	//header('HTTP/1.1 404 Not Found');
+	header('HTTP/1.1 404 Not Found');
 	throw new Exception(get_string('timetable_nocontent', 'report_parentprogressview'));
 }
 
-if ($action == 'invokeprint') {
-?>
-<script type="text/javascript">
-window.print();
-</script>
-<?php
-}
-
+header('Content-Type: text/html; charset=UTF8');
 echo $CFG->report_parentprogressview_timetables_html_prepend;
 
 echo $result[0]->content->rendered;

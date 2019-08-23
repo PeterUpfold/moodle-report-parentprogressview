@@ -63,6 +63,8 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
  $string['nopermission'] = 'The specified document does not exist, or you do not have permission to view it.';
  $string['timetable_nopermission'] = 'The specified timetable does not exist, or you do not have permission to view it.';
  $string['timetable_nocontent'] = 'A timetable for this user has not yet been published.';
+ $string['timetable_heading'] = 'Timetable for ';
+ $string['timetable_viewtimetablebutton'] = 'View Timetable';
  $string['documentmeta:filename'] = 'Name';
  $string['documentmeta:datepublished'] = 'Date Published to Parents';
  $string['documentmeta:filetype'] = 'File type';

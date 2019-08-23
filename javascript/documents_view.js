@@ -36,6 +36,38 @@ this.documentItemClick = function(id) {
 
 }
 
+this.timetableItemClick = function(id) {
+
+	let token = this.CoreSitesProvider.currentSite.getToken();
+	let siteUrl = this.CoreSitesProvider.getCurrentSite().siteUrl;
+
+	let wsPreSets = {
+            wsToken: token,
+            siteUrl: this.CoreSitesProvider.getCurrentSite().siteUrl,
+            cleanUnicode: false,
+            typeExpected: 'object',
+            responseExpected: true
+	};
+
+	//let uri = siteUrl + '/report/parentprogressview/mobile/timetable.php?id=' + encodeURIComponent(id) + '&token=' + encodeURIComponent(token);
+	// non-pretty URL above -- not ideal for Android that wants to get mimetype from file extension
+	
+	let uri = siteUrl + '/report/parentprogressview/mobile/timetable/' + encodeURIComponent(id) + '/' + encodeURIComponent(token) + '/timetable.html';
+	let fileObject = {
+		"url": uri
+	};
+
+	this.CoreFileHelperProvider.downloadAndOpenFile(fileObject, 'report_parentprogressview', id).then(function(value) {
+		//alert('Promise fulfilled ' + JSON.stringify(value) );
+	}, function(value) {
+		alert('Failed to open the timetable. Please check that you are still connected to the Internet.');
+		console.log(JSON.stringify(value));
+	});
+	
+
+}
+
+
 this.triggerDocumentsView = function(userid) {
 	this.hideAllViews(userid);
 	document.querySelector('ion-list.documents-list[data-pupil="' + userid + '"]').style.display = 'block';

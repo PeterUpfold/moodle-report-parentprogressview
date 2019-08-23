@@ -325,7 +325,7 @@ class document_set {
 	 * to allow the mobile app data, which is presented as a single multi-tabbed view, to be pulled at once.
 	 */
 	public function get_documents_and_other_data_by_pupil_username($earliest_published_date = null, $latest_published_date = null, $include_hidden = false) {
-		global $DB, $USER;
+		global $DB, $USER, $CFG;
 
 
 		require_once(dirname(__FILE__) . '/../output/attendance_page.php');
@@ -341,9 +341,10 @@ class document_set {
 		$behaviour_by_pupil_page = new \report_parentprogressview\output\behaviour_page($USER, null, null); // default the earliest and latest for now
 		$behaviour_by_pupil = $behaviour_by_pupil_page->prepare_data(false);
 
+                require_once(dirname(__FILE__) . '/../local/hub_api_request.php');
+
 
 		$output = $this->get_documents_by_pupil_username($earliest_published_date, $latest_published_date, $include_hidden);
-
 
 		// add other data
 		//
@@ -371,6 +372,34 @@ class document_set {
 					break;
 				}
 			}
+
+                        // does timetable exist? TODO improve performance
+                        $request = new \report_parentprogressview\local\WP_REST_API_Request(
+                            $CFG->report_parentprogressview_timetables_api_base,
+                            $CFG->report_parentprogressview_timetables_api_namespace,
+                            $CFG->report_parentprogressview_timetables_api_route,
+                            $CFG->report_parentprogressview_timetables_api_user,
+                            $CFG->report_parentprogressview_timetables_api_pass);
+
+                        $request->add_query_argument('status', 'private');
+                        $request->add_query_argument('orderby', 'date');
+                        $request->add_query_argument('order', 'desc');
+                        $request->add_query_argument('per_page', 1);
+                        $request->add_meta_query('username', $pupil->user->username, '=');
+
+                        try {
+                            $result = $request->request();
+                            if ($request->status == 200 && count($result) > 0) {
+                                $pupil->timetable = true;
+                            }
+                            else {
+                                $pupil->timetable = [];
+                            }
+
+                        } catch (Exception $e) {
+                            $pupil->timetable = [];
+                        }
+
 
 			$pupil->attendance = $pupil_attendance;
 			$pupil->achievements = $pupil_achievements;

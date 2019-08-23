@@ -45,7 +45,8 @@ $addons = array(
 					'version' => @filemtime(dirname(__FILE__) . '/../mobile/styles.css')
 				)
 			)
-		),
+                    ),
+                    /* These language strings are passed to the mobile app and cached upon sign in */
 		'lang' => array(
 			array('pluginname', 'report_parentprogressview'),
 			array('documentsfeaturename', 'report_parentprogressview'),
@@ -74,6 +75,10 @@ $addons = array(
 			array('attendancemarkstableheading', 'report_parentprogressview'),
 			array('nodocumentstoview', 'report_parentprogressview'),
 			array('noattachedpupils', 'report_parentprogressview'),
+                        array('timetable_heading', 'report_parentprogressview'),
+                        array('timetable_nocontent', 'report_parentprogressview'),
+                        array('timetable_nopermission', 'report_parentprogressview'),
+                        array('timetable_viewtimetablebutton', 'report_parentprogressview')
 		)
 	)
 
