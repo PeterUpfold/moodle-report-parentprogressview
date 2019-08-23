@@ -1,6 +1,6 @@
 {{!
 Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
-    Copyright (C) 2016-17 Test Valley School.
+    Copyright (C) 2016-19 Test Valley School.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,15 +15,14 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }}
-
 <ul class="nav nav-tabs" role="tablist">
 	<li class="nav-item">
 		<a href="{{ link_documents_page }}" class="nav-link">
 			{{# str }}documentsfeaturename, report_parentprogressview{{/ str }}
 		</a>
 	</li>
-	<li class="active nav-item">
-		<a href="{{ link_achievement_page }}" class="nav-link active">
+	<li class="nav-item">
+		<a href="{{ link_achievement_page }}" class="nav-link">
 			{{# str }}achievementfeaturename, report_parentprogressview{{/ str }}
 		</a>
 	</li>
@@ -37,46 +36,38 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 			{{# str }}attendancefeaturename, report_parentprogressview{{/ str }}
 		</a>
 	</li>
-    	<li class="nav-item">
-		<a href="{{ link_timetables_page }}" class="nav-link">
+    	<li class="nav-item active">
+		<a href="{{ link_timetables_page }}" class="nav-link active">
 			{{# str }}timetablesfeaturename, report_parentprogressview{{/ str }}
 		</a>
 	</li>
-
 </ul>
 
-<p style="text-align:center;"><span class="fa-2x fa-star" style="font-size:2.7em;"></span></p>
-<p>{{ featurehelp }}</p>
 
-
-{{# achievements_by_pupil }}
+{{# timetables_by_pupil }}
 	<h3>{{ user.firstname }} {{ user.lastname }}</h3>
 
-	<h5>{{# str }}achievementotalsheader, report_parentprogressview {{/ str }}</h5>
-	<div class="statistics">
-		<aside class="statistic">
-			<p>{{# str }}achievementpointslabel, report_parentprogressview{{/ str }}</p>
-			<h4 class="counter">{{ total_achievement_points }}</h4>
-		</aside>
-		<aside class="statistic">
-			<p>{{# str }}behaviourpointslabel, report_parentprogressview{{/ str }}</p>
-			<h4 class="counter">{{ total_behaviour_points }}</h4>
-		</aside>
+	{{# timetables }}
+		<article class="available-timetable">
+                    <p>{{# str }}timetableprintlink, report_parentprogressview, {{{ printable_link }}} {{/ str }}</p>
+                    <iframe src="data:text/html;charset=UTF-8;base64,{{{ content_base64 }}}"></iframe>
+		</article>
 
-	</div>
+	{{/ timetables }}
+	{{^ timetables }}
+		<div class="alert alert-info">
+		<p>{{# str }}notimetablestoview, report_parentprogressview{{/ str }}</p>
+		<p>{{# str }}notimetableshelp1, report_parentprogressview{{/ str }}</p>
+		<p>{{# str }}notimetableshelp2, report_parentprogressview{{/ str }}</p>
+		</div>
+	{{/ timetables }}
 
-	<h5>{{# str }}achievementitemsheader, report_parentprogressview{{/ str }}</h5>
-	{{{ table }}}
+{{/ timetables_by_pupil }}
 
-{{/ achievements_by_pupil }}
-
-{{^ achievements_by_pupil }}
+{{^ timetables_by_pupil }}
 	<div class="alert alert-info">
 	<p>{{# str }}noattachedpupils, report_parentprogressview{{/ str }}</p>
 	</div>
-{{/ achievements_by_pupil }}
+{{/ timetables_by_pupil }}
 
 
-<aside class="show-documents-published-form">{{{ daterange_form }}}</aside>
-<br/>
-<br/>

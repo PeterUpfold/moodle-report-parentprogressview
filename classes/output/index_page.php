@@ -73,6 +73,7 @@ class index_page implements renderable, templatable {
 		$data->link_documents_page = new \moodle_url('/report/parentprogressview/index.php');
 		$data->link_behaviour_page = new \moodle_url('/report/parentprogressview/behaviour.php');
 		$data->link_attendance_page = new \moodle_url('/report/parentprogressview/attendance.php');
+		$data->link_timetables_page = new \moodle_url('/report/parentprogressview/timetables.php');	
 		$data->link_achievement_page = new \moodle_url('/report/parentprogressview/achievements.php');
 
 		$data->link_no_documents_help_page = $CFG->report_parentprogressview_link_no_documents_help_page;

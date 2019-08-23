@@ -217,6 +217,7 @@ class achievements_page implements renderable, templatable {
 		$data->link_behaviour_page = new \moodle_url('/report/parentprogressview/behaviour.php');
 		$data->link_attendance_page = new \moodle_url('/report/parentprogressview/attendance.php');
 		$data->link_achievement_page = new \moodle_url('/report/parentprogressview/achievements.php');	
+		$data->link_timetables_page = new \moodle_url('/report/parentprogressview/timetables.php');	
 
 		$data->achievements_by_pupil = $output;
 

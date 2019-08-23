@@ -29,6 +29,11 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
 	background-color: #f8f1ff;
 }
 
+.path-admin-report-parentprogressview article.available-timetable iframe {
+    width:100%;
+    min-height: 570px;
+}
+
 .path-admin-report-parentprogressview #region-main {
 	background-color: #fff;
 	border: 1px solid #e3e3e3;

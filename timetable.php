@@ -77,3 +77,10 @@ echo $CFG->report_parentprogressview_timetables_html_prepend;
 
 echo $result[0]->content->rendered;
 
+\report_parentprogressview\event\timetable_viewed::create(
+	[
+		'other' => 
+			[ 	'pupil_username' => $target_username
+       			]
+	]
+)->trigger();

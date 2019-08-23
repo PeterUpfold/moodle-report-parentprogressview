@@ -61,10 +61,20 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
  $string['behaviourfeaturehelp'] = 'The Behaviour page shows the recent behaviour points your child has accumulated. Please remember that this system is updated once per day. If you have any questions about behaviour points, do not hesitate to contact your child\'s form tutor in the first instance.';
  $string['attendancefeaturehelp'] = 'The Attendance page shows your child\'s recent attendance marks for both morning and afternoon registration. Please note that this system is updated twice per day and there will therefore be a delay before your child\'s registration marks appear here. If you have any questions about attendance, do not hesitate to contact your child\'s form tutor in the first instance.';
  $string['nopermission'] = 'The specified document does not exist, or you do not have permission to view it.';
+ $string['timetablesfeaturename'] = 'Timetables';
  $string['timetable_nopermission'] = 'The specified timetable does not exist, or you do not have permission to view it.';
  $string['timetable_nocontent'] = 'A timetable for this user has not yet been published.';
  $string['timetable_heading'] = 'Timetable for ';
  $string['timetable_viewtimetablebutton'] = 'View Timetable';
+ $string['notimetablestoview'] = 'There are no timetables currently available in this system for this pupil.';
+ $string['notimetableshelp1'] = '';
+ $string['notimetableshelp2'] = '';
+ $string['eventtimetablesviewed'] = 'Parent Progress View Timetables page viewed';
+ $string['eventtimetablesvieweddescription'] = 'The user with id \'%d\' viewed the full PPV Timetables page for their attached pupils.';
+ $string['eventtimetableviewed'] = 'Parent Progress View individual timetable viewed';
+ $string['eventtimetablevieweddescription'] = 'The user with id \'%d\' viewed the timetable for the user \'%s\'.';
+ $string['eventmobiletimetableviewed'] = 'Parent Progress View individual timetable viewed on mobile';
+ $string['eventmobiletimetablevieweddescription'] = 'The user with id \'%d\' viewed the timetable for the user \'%s\' using the mobile app.';
  $string['documentmeta:filename'] = 'Name';
  $string['documentmeta:datepublished'] = 'Date Published to Parents';
  $string['documentmeta:filetype'] = 'File type';
@@ -238,3 +248,6 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
  $string['cachedef_achievements'] = 'Store achievement data -- summaries and incidents';
  $string['cachedef_behaviour'] = 'Store behaviour data -- summaries and incidents';
  $string['cachedef_attendance'] = 'Store attendance data -- summaries and marks';
+
+
+ $string['timetableprintlink'] = '<a href="{$a}" target="_blank" title="Opens printer-friendly timetable"><i class="icon fa fa-print fa-fw" title="Opens printer-friendly timetable" aria-label="Opens printer-friendly timetable"></i> Print</a>';

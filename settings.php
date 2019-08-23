@@ -74,6 +74,16 @@ $ADMIN->add(
 	)
 );
 
+$ADMIN->add(
+	'report_parentprogressview',
+	new admin_externalpage(
+		'report_parentprogressview_timetables',
+		get_string('timetablesfeaturename', 'report_parentprogressview'),
+		"{$CFG->wwwroot}/report/parentprogressview/timetables.php",
+		'report/parentprogressview:view'
+	)
+);
+
 /*** Define which role is parent role ***/
 
 // prepare list of roles and role IDs
