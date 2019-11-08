@@ -250,7 +250,7 @@ class document_set {
 				date_published > ? AND
 				date_published < ? AND
 				hidden != ?
-			ORDER BY date_published, filename DESC";
+			ORDER BY date_published DESC, filename DESC";
 		
 
 		$stmt = $this->conn->conn->prepare( $sql );
