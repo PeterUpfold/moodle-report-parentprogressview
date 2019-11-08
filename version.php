@@ -1,7 +1,7 @@
 <?php
 /*
 Parent Progress View, a module for Moodle to allow the viewing of documents and pupil data by authorised parents.
-    Copyright (C) 2016-19 Test Valley School.
+    Copyright (C) 2016-17 Test Valley School.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,9 +27,9 @@ Parent Progress View, a module for Moodle to allow the viewing of documents and 
  
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2019082303;			// YYYYMMDDXX where XX is an incrementing revision number for that day
-$plugin->requires  = 2016052300;			// required Moodle version.tring
+$plugin->version = 2019072601;			// YYYYMMDDXX where XX is an incrementing revision number for that day
+$plugin->requires  = 2018051708;			// required Moodle version.tring
 $plugin->component = 'report_parentprogressview';	// Full name of the plugin
 $plugin->maturity  = MATURITY_STABLE;			// why not?
-$plugin->release   = 'v1.4';				// friendly version.umber
+$plugin->release   = 'v1.3';				// friendly version.umber
 $plugin->cron      = 0;
