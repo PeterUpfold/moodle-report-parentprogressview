@@ -98,6 +98,24 @@ class mobile {
 	 */
 	public static function mobile_documents_view_javascript() {
 		$file = 'documents_view.js';
+		return mobile::get_javascript_file($file);
+	}
+
+	/**
+	 * Return some JavaScript code that is executed as soon as the plugin is retrieved from the server.
+	 */
+	public static function init() {
+		return mobile::get_javascript_file('init.js');
+	}
+
+
+	/**
+	 * Return the file contents of the specified local $file.
+	 *
+	 * @param string $file The filename of the JavaScript file.
+	 * @return string
+	 */
+	private static function get_javascript_file($file) {
 		$filename = dirname(__FILE__) . '/../../javascript/' . $file;
 		if (!file_exists($filename)) {
 			throw new \Exception(sprintf('Unable to open JavaScript file \'%s\'.', $file));

@@ -40,6 +40,7 @@ $addons = array(
 					'mobile_documents_view' => array(),
 
 				),
+				'init'       => 'init', // will call init() in classes/output/mobile.php's mobile class to initialise
 				'styles'     => array(
 					'url'     => 'report/parentprogressview/mobile/styles.css',
 					'version' => @filemtime(dirname(__FILE__) . '/../mobile/styles.css')
