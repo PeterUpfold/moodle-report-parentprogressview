@@ -29,11 +29,18 @@ ParentProgressViewModuleLinkHandler.prototype.constructor = ParentProgressViewMo
 ParentProgressViewModuleLinkHandler.prototype.getActions = function(siteIds, url, params) {
 	var action = {
 		action: function() {
-			//const modal = that.CoreDomUtilsProvider.showModalLoading();
+			console.log('Handling PPV link.');
+			const modal = that.CoreDomUtilsProvider.showModalLoading();
 			that.CoreAppProvider.getRootNavController().push('CoreSitePluginsPluginPage',
-				{ 	component: 'report_parentprogressview',
-					method:'mobile_documents_view'
-				}, null, null);
+				{ 	component: 	'report_parentprogressview',
+					method:		'mobile_documents_view',
+					args:		[],
+					jsData:		{},
+					preSets:	{}
+
+				}).then(function() {
+					modal.dismiss();
+				});
 		}
 	};
 	return [action];
