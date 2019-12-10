@@ -94,7 +94,7 @@ class mobile {
 	/**
 	 * Return the JavaScript for the mobile_documents_view external view.
 	 *
-	 * @return string
+	 * @return string the JavaScript
 	 */
 	public static function mobile_documents_view_javascript() {
 		$file = 'documents_view.js';
@@ -103,9 +103,16 @@ class mobile {
 
 	/**
 	 * Return some JavaScript code that is executed as soon as the plugin is retrieved from the server.
+	 *
+	 * @return array HTML, JS and other
 	 */
 	public static function init() {
-		return mobile::get_javascript_file('init.js');
+		return [
+			'templates'  => [],
+			'javascript' => mobile::get_javascript_file('init.js'),
+			'otherdata'  => '',
+			'files'      => []
+		];
 	}
 
 

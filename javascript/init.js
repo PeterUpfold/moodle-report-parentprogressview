@@ -29,6 +29,7 @@ ParentProgressViewModuleLinkHandler.prototype.constructor = ParentProgressViewMo
 ParentProgressViewModuleLinkHandler.prototype.getActions = function(siteIds, url, params) {
 	var action = {
 		action: function() {
+			alert(url);
 			that.CoreUtilsProvider.openInBrowser(url);
 		}
 	};
