@@ -29,8 +29,11 @@ ParentProgressViewModuleLinkHandler.prototype.constructor = ParentProgressViewMo
 ParentProgressViewModuleLinkHandler.prototype.getActions = function(siteIds, url, params) {
 	var action = {
 		action: function() {
-			alert(url);
-			that.CoreUtilsProvider.openInBrowser(url);
+			//const modal = that.CoreDomUtilsProvider.showModalLoading();
+			that.CoreAppProvider.getRootNavController().push('CoreSitePluginsPluginPage',
+				{ 	component: 'report_parentprogressview',
+					method:'mobile_documents_view'
+				}, null, null);
 		}
 	};
 	return [action];
