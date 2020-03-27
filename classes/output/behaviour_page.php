@@ -170,20 +170,22 @@ class behaviour_page implements renderable, templatable {
 				$output[$o_count]->table = ob_get_clean();
 
 				// list for mobile app
-				$ion_grid = new mobile_ion_grid(
-					$result,
-					array(
-						'incident_date',
-						'type',
-						'points'
-					)
-				);
+				if ($request->status == 200) {
+					$ion_grid = new mobile_ion_grid(
+						$result,
+						array(
+							'incident_date',
+							'type',
+							'points'
+						)
+					);
 
-				try {
-					$output[$o_count]->ion_grid = $ion_grid->render();
-				}
-				catch (\InvalidArgumentException $iae) {
-					error_log('The data passed to the ion-grid renderer was not an array of stdClass objects, despite having >0 count -- data for ' . $username);
+					try {
+						$output[$o_count]->ion_grid = $ion_grid->render();
+					}
+					catch (\InvalidArgumentException $iae) {
+						error_log('The data passed to the ion-grid renderer was not an array of stdClass objects, despite having >0 count -- data for ' . $username);
+					}
 				}
 
 				++$o_count;
