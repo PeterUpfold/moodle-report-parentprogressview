@@ -247,6 +247,7 @@ class WP_REST_API_Request {
 		curl_setopt( $this->request, CURLOPT_RETURNTRANSFER, true );
 		curl_setopt( $this->request, CURLOPT_TIMEOUT, $this->timeout );
 		curl_setopt( $this->request, CURLOPT_CONNECTTIMEOUT, $this->connect_timeout );
+		curl_setopt( $this->request, CURLOPT_PROXY, null );
 
 		curl_setopt( $this->request, CURLOPT_URL, $this->uri );
 		curl_setopt( $this->request, CURLOPT_HEADER, false );
