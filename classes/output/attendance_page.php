@@ -212,7 +212,12 @@ class attendance_page implements renderable, templatable {
 						'mark_description'
 					)
 				);
-				$output[$o_count]->ion_grid = $ion_grid->render();
+				try {
+					$output[$o_count]->ion_grid = $ion_grid->render();
+				}
+				catch (\InvalidArgumentException $iae) {
+					error_log('The data passed to the ion-grid renderer was not an array of stdClass objects, despite having >0 count -- data for ' . $username);
+				}
 
 				// fill summary data with placeholder strings for now -- replace below if we get a data match
 				$output[$o_count]->pcnt_present = get_string('noattendancesummaryplaceholder', 'report_parentprogressview');

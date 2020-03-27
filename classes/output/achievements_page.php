@@ -182,7 +182,12 @@ class achievements_page implements renderable, templatable {
 					)
 				);
 
-				$output[$o_count]->ion_grid = $ion_grid->render();
+				try {
+					$output[$o_count]->ion_grid = $ion_grid->render();
+				}
+				catch (\InvalidArgumentException $iae) {
+					error_log('The data passed to the ion-grid renderer was not an array of stdClass objects, despite having >0 count -- data for ' . $username);
+				}
 				// get achievement points totals
 				$conduct_totals_request = new  \report_parentprogressview\local\WP_REST_API_Request(
 					$this->configuration->base,
